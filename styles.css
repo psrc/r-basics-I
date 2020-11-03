@@ -24,19 +24,44 @@ header{
     border-bottom: double black;
 }
 
-.header-container {
+.header-container,
+.title-container div {
     display: flex;
     align-items: flex-end;
 }
 
+.title-container div {
+    margin: 0;
+    padding-top: .2rem;
+}
+
 .header-container img {
-    width: 10%;
+    width: 11%;
 }
 .title-container {
     margin-left: 2rem;
 }
 
+.title-container img {
+    width: 5%;
+    margin-right: .5rem;
+    align-self: center;
+    margin:0 .7rem 0 0;
+    padding:0;
+}
+
+.title-container p {
+    font-family: var(--headerfont);
+    font-style: italic;
+    font-size: 1rem;
+    align-self: center;
+    margin:0;
+    padding:0;
+}
+
 .header-container h1 {
+    margin:0;
+    padding:0;
     display: table-cell;
     vertical-align: bottom;
 }
