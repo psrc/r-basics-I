@@ -1,4 +1,5 @@
 ---
+layout: page
 title: R Fundamentals I
 subtitle: Introduction to R and RStudio
 ---

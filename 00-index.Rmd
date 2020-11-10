@@ -1,4 +1,5 @@
 ---
+layout: page
 title: R Fundamentals I
 subtitle: Introduction to R for non-programmers
 ---
@@ -24,7 +25,8 @@ Please have R and RStudio installed before the course:
 3.  [Data frames and reading in data](03-data-structures-part2.html)
 4.  [Subsetting data](04-data-subsetting.html)
 5.  [Vectorisation](05-vectorisation.html)
-6.  [Homework](16-home_work.html)
+6.  [Data manipulation and simple plots](06-data-manip.html)
+7.  [Homework](07-home_work.html)
 
 
 ## Other Resources

@@ -30,7 +30,7 @@ provide powerful capabilities.
 Data frames can be created manually with the `data.frame` function:
 
 ```{r}
-df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = 100:95)
 df
 ```
 
@@ -54,7 +54,7 @@ We can add columns or rows to a data.frame using `cbind` or `rbind`
 To add a column we can use `cbind`:
 
 ```{r}
-df <- cbind(df, z=6:1, caps=LETTERS[1:6])
+df <- cbind(df, z = 6:1, caps = LETTERS[1:6])
 df
 ```
 (`LETTERS` and `letters` are built-in constants.)
@@ -71,7 +71,7 @@ df
 To add a row we use `rbind`:
 
 ```{r}
-df <- rbind(df, data.frame(id="g", x=11, y=42, z=0, caps='G', zero=NA))
+df <- rbind(df, data.frame(id = "g", x = 11, y = 42, z = 0, caps = 'G', zero = NA))
 str(df)
 ```
 
@@ -101,43 +101,25 @@ Data frames can be merged on one or more columns. Create a second dataset and me
 ```{r}
 df2 <- data.frame(id = letters[1:5], X = 101:105)
 df2
-df <- merge(df, df2, by="id", all=TRUE)
+df <- merge(df, df2, by = "id", all = TRUE)
 df
 ``` 
 
-> ## Challenge 1 {.challenge}
->
-> Create a data frame that holds the following information for yourself:
->
-> * First name
-> * Last name
-> * Height
->
-> Then use rbind to add the same information for the people sitting near you.
->
-> Now use cbind to add a column of logicals that will, for each
->person, hold the answer to the question,
-> "Is there anything in this workshop you're finding confusing?"
->
 
 ## Reading in data
 
 Now we want to load our data into R. We will use PSRC land use data, particularly in this lesson the number of households in cities.
-Before reading in data, it's a good idea to have a look at its structure.
-Let's take a look using our newly-learned shell skills:
+Before reading in data, it's a good idea to have a look at its structure. From a shell terminal, you can do:
 
 ```{r, engine='bash'}
 cd data/ # navigate to the data directory of the project folder
-head city__table__households.csv
+head cities_households.csv
 ```
 
-As its file extension would suggest, the file contains comma-separated
-values, and seems to contain a header row.
-
-We can use `read.table` to read this into R:
+The file contains comma-separated values and a header row. We can use `read.table` to read this into R:
 
 ```{r}
-hh <- read.table(file="data/city__table__households.csv", header=TRUE, sep=",")
+hh <- read.table(file = "data/cities_households.csv", header = TRUE, sep = ",")
 head(hh)
 ```
 
@@ -151,7 +133,7 @@ for loading in CSV files.
 
 ```{r}
 # Here is the read.csv version of the above command
-hh <- read.csv(file="data/city__table__households.csv")
+hh <- read.csv(file = "data/cities_households.csv")
 head(hh)
 ```
 
@@ -175,7 +157,7 @@ as its argument (or by pressing the "source" button in RStudio).
 
 
 To recap what we've just learned, let's have a look at our example
-data (mumber of households in various cities for various years).
+data (number of households in various cities for various years).
 
 Remember, there are a few functions we can use to interrogate data structures in R:
 
@@ -198,65 +180,16 @@ The household data is stored in a "data.frame". This is the default
 data structure when you read in data, and (as we've heard) is useful
 for storing data with mixed types of columns.
 
-Let's add a column with the name of each city and merge the two datasets:
+Let's add a column with the name of each city and county and merge the two datasets:
 
 ```{r}
-cities <- read.table(file="data/cities.csv", header=TRUE, sep=",")
+cities <- read.csv(file="data/cities.csv")
 head(cities)
 ```
-Let's look at some of the columns.
-```{r}
-typeof(cities$city_id)
-typeof(cities$city_name)
-```
-If you were expecting a the answer to be "character", you would rightly be
-surprised by the answer. Let's take a look at the class of this column:
-
-```{r}
-class(cities$city_name)
-```
-One of the default behaviours of R is to treat any text columns as "factors"
-when reading in data. The reason for this is that text columns often represent
-categorical data, which need to be factors to be handled appropriately by
-the statistical modeling functions in R.
-
-However it's not obvious behaviour, and something that trips many people up. We can
-disable this behaviour and read in the data again.
-
-```{r}
-options(stringsAsFactors=FALSE)
-cities <- read.table(file="data/cities.csv", header=TRUE, sep=",")
-class(cities$city_name)
-```
-
-Remember, if you do turn it off automatic conversion to factors you will need to
-explicitly convert the variables into factors when
-running statistical models.
-This can be useful, because it forces you to think about the
-question you're asking, and makes it easier to specify the ordering of the categories.
-
-However there are many in the R community who find it more sensible to
-leave this as the default behaviour.
-
-> ## Tip: Changing options {.callout} 
-> When R starts, it runs any
->code in the file `.Rprofile` in the project directory. You can make
->permanent changes to default behaviour by storing the changes in that
->file. BE CAREFUL, however. If you change R's default options,
->programs written by others may not run correctly in your environment
->and vice versa. For this reason, some argue that most such changes
->should be in your scripts, where they are visible.
-
 
 Let's merge the cities dataset with our households dataset.
 ```{r}
-hh <- merge(hh, cities, by="city_id", all=TRUE)
-head(hh)
-```
-Let's add names of counties.
-```{r}
-counties <- data.frame(county_id=1:4, county_name=c("Snohomish", "King", "Kitsap", "Pierce"))
-hh <- merge(hh, counties, by="county_id", all=TRUE)
+hh <- merge(hh, cities, by="city_id", all = TRUE)
 head(hh)
 ```
 
@@ -278,8 +211,8 @@ of the data.frame:
 
 ```{r}
 colnames(hh) 
-colnames(hh)[3:6] <- paste0("hh", seq(10, 40, by=10))
-head(hh, n=10)
+colnames(hh)[ncol(hh)] <- "county" # rename the last column
+head(hh, n = 10)
 ```
 
 ```{r}
@@ -305,24 +238,3 @@ We can look at some summary statistics:
 summary(hh)
 ```
 
-## Challenge Solutions
-
-> ## Solution to Challenge 1 {.challenge}
->
-> Create a data frame that holds the following information for yourself:
->
-> * First name
-> * Last name
-> * Height
->
-> Then use rbind to add the same information for the people sitting near you.
->
-> Now use cbind to add a column of logicals answering the question,
-> "Is there anything in this workshop you're finding confusing?"
->
-> ```{r, eval=FALSE}
-> my_df <- data.frame(first_name = "Software", last_name = "Carpentry", height = 170)
-> my_df <- rbind(my_df, list("Jane", "Smith", 160))
-> my_df <- rbind(my_df, list(c("Jo", "John"), c("White", "Lee"), c(165, 179)))
-> my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
-> ```

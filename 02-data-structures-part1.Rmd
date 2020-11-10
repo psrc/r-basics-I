@@ -1,11 +1,7 @@
 ---
+layout: page
 title: R Fundamentals I
 subtitle: Data structures
-output: 
-  html_document:
-    css: css/swc.css
-    theme: readable
-    toc: true
 ---
 
 ```{r, include=FALSE}

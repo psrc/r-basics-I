@@ -29,7 +29,7 @@ Data frames can be created manually with the `data.frame` function:
 
 
 ~~~{.r}
-df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = c(214:219))
+df <- data.frame(id = c('a', 'b', 'c', 'd', 'e', 'f'), x = 1:6, y = 100:95)
 df
 ~~~
 
@@ -37,12 +37,12 @@ df
 
 ~~~{.output}
   id x   y
-1  a 1 214
-2  b 2 215
-3  c 3 216
-4  d 4 217
-5  e 5 218
-6  f 6 219
+1  a 1 100
+2  b 2  99
+3  c 3  98
+4  d 4  97
+5  e 5  96
+6  f 6  95
 
 ~~~
 
@@ -83,7 +83,7 @@ To add a column we can use `cbind`:
 
 
 ~~~{.r}
-df <- cbind(df, z=6:1, caps=LETTERS[1:6])
+df <- cbind(df, z = 6:1, caps = LETTERS[1:6])
 df
 ~~~
 
@@ -91,12 +91,12 @@ df
 
 ~~~{.output}
   id x   y z caps
-1  a 1 214 6    A
-2  b 2 215 5    B
-3  c 3 216 4    C
-4  d 4 217 3    D
-5  e 5 218 2    E
-6  f 6 219 1    F
+1  a 1 100 6    A
+2  b 2  99 5    B
+3  c 3  98 4    C
+4  d 4  97 3    D
+5  e 5  96 2    E
+6  f 6  95 1    F
 
 ~~~
 (`LETTERS` and `letters` are built-in constants.)
@@ -112,12 +112,12 @@ df
 
 ~~~{.output}
   id x   y z caps zero
-1  a 1 214 6    A    0
-2  b 2 215 5    B    0
-3  c 3 216 4    C    0
-4  d 4 217 3    D    0
-5  e 5 218 2    E    0
-6  f 6 219 1    F    0
+1  a 1 100 6    A    0
+2  b 2  99 5    B    0
+3  c 3  98 4    C    0
+4  d 4  97 3    D    0
+5  e 5  96 2    E    0
+6  f 6  95 1    F    0
 
 ~~~
 
@@ -128,7 +128,7 @@ To add a row we use `rbind`:
 
 
 ~~~{.r}
-df <- rbind(df, data.frame(id="g", x=11, y=42, z=0, caps='G', zero=NA))
+df <- rbind(df, data.frame(id = "g", x = 11, y = 42, z = 0, caps = 'G', zero = NA))
 str(df)
 ~~~
 
@@ -138,7 +138,7 @@ str(df)
 'data.frame':	7 obs. of  6 variables:
  $ id  : chr  "a" "b" "c" "d" ...
  $ x   : num  1 2 3 4 5 6 11
- $ y   : num  214 215 216 217 218 219 42
+ $ y   : num  100 99 98 97 96 95 42
  $ z   : num  6 5 4 3 2 1 0
  $ caps: chr  "A" "B" "C" "D" ...
  $ zero: num  0 0 0 0 0 0 NA
@@ -160,12 +160,12 @@ df[-7, ]  # The minus sign tells R to delete the row
 
 ~~~{.output}
   id x   y z caps zero
-1  a 1 214 6    A    0
-2  b 2 215 5    B    0
-3  c 3 216 4    C    0
-4  d 4 217 3    D    0
-5  e 5 218 2    E    0
-6  f 6 219 1    F    0
+1  a 1 100 6    A    0
+2  b 2  99 5    B    0
+3  c 3  98 4    C    0
+4  d 4  97 3    D    0
+5  e 5  96 2    E    0
+6  f 6  95 1    F    0
 
 ~~~
 
@@ -179,12 +179,12 @@ df[!is.na(df$zero), ]  # is.na() returns TRUE where its argument is NA
 
 ~~~{.output}
   id x   y z caps zero
-1  a 1 214 6    A    0
-2  b 2 215 5    B    0
-3  c 3 216 4    C    0
-4  d 4 217 3    D    0
-5  e 5 218 2    E    0
-6  f 6 219 1    F    0
+1  a 1 100 6    A    0
+2  b 2  99 5    B    0
+3  c 3  98 4    C    0
+4  d 4  97 3    D    0
+5  e 5  96 2    E    0
+6  f 6  95 1    F    0
 
 ~~~
 
@@ -199,12 +199,12 @@ df
 
 ~~~{.output}
   id x   y z caps zero
-1  a 1 214 6    A    0
-2  b 2 215 5    B    0
-3  c 3 216 4    C    0
-4  d 4 217 3    D    0
-5  e 5 218 2    E    0
-6  f 6 219 1    F    0
+1  a 1 100 6    A    0
+2  b 2  99 5    B    0
+3  c 3  98 4    C    0
+4  d 4  97 3    D    0
+5  e 5  96 2    E    0
+6  f 6  95 1    F    0
 
 ~~~
 
@@ -221,18 +221,18 @@ rbind(df, df)
 
 ~~~{.output}
    id x   y z caps zero
-1   a 1 214 6    A    0
-2   b 2 215 5    B    0
-3   c 3 216 4    C    0
-4   d 4 217 3    D    0
-5   e 5 218 2    E    0
-6   f 6 219 1    F    0
-7   a 1 214 6    A    0
-8   b 2 215 5    B    0
-9   c 3 216 4    C    0
-10  d 4 217 3    D    0
-11  e 5 218 2    E    0
-12  f 6 219 1    F    0
+1   a 1 100 6    A    0
+2   b 2  99 5    B    0
+3   c 3  98 4    C    0
+4   d 4  97 3    D    0
+5   e 5  96 2    E    0
+6   f 6  95 1    F    0
+7   a 1 100 6    A    0
+8   b 2  99 5    B    0
+9   c 3  98 4    C    0
+10  d 4  97 3    D    0
+11  e 5  96 2    E    0
+12  f 6  95 1    F    0
 
 ~~~
  
@@ -259,7 +259,7 @@ df2
 
 
 ~~~{.r}
-df <- merge(df, df2, by="id", all=TRUE)
+df <- merge(df, df2, by = "id", all = TRUE)
 df
 ~~~
 
@@ -267,80 +267,62 @@ df
 
 ~~~{.output}
   id x   y z caps zero   X
-1  a 1 214 6    A    0 101
-2  b 2 215 5    B    0 102
-3  c 3 216 4    C    0 103
-4  d 4 217 3    D    0 104
-5  e 5 218 2    E    0 105
-6  f 6 219 1    F    0  NA
+1  a 1 100 6    A    0 101
+2  b 2  99 5    B    0 102
+3  c 3  98 4    C    0 103
+4  d 4  97 3    D    0 104
+5  e 5  96 2    E    0 105
+6  f 6  95 1    F    0  NA
 
 ~~~
 
-> ## Challenge 1 {.challenge}
->
-> Create a data frame that holds the following information for yourself:
->
-> * First name
-> * Last name
-> * Height
->
-> Then use rbind to add the same information for the people sitting near you.
->
-> Now use cbind to add a column of logicals that will, for each
->person, hold the answer to the question,
-> "Is there anything in this workshop you're finding confusing?"
->
 
 ## Reading in data
 
 Now we want to load our data into R. We will use PSRC land use data, particularly in this lesson the number of households in cities.
-Before reading in data, it's a good idea to have a look at its structure.
-Let's take a look using our newly-learned shell skills:
+Before reading in data, it's a good idea to have a look at its structure. From a shell terminal, you can do:
 
 
 ~~~{.r}
 cd data/ # navigate to the data directory of the project folder
-head city__table__households.csv
+head cities_households.csv
 ~~~
 
 
 
 
 ~~~{.output}
-city_id,households_2010,households_2020,households_2030,households_2040
-49.0,43742.0,49969.0,52608.0,57695.0
-94.0,13996.0,16912.0,20425.0,24603.0
-95.0,40735.0,50907.0,61703.0,73879.0
-96.0,2276.0,2484.0,2593.0,2753.0
-97.0,762.0,759.0,787.0,822.0
-98.0,16315.0,19519.0,20639.0,21839.0
-99.0,958.0,1020.0,1126.0,1258.0
-100.0,7130.0,8706.0,8867.0,9150.0
-101.0,8078.0,9479.0,10496.0,11484.0
+city_id,hh2016,hh2020,hh2030,hh2040,hh2050
+1,2705,2735,2836,2939,3037
+2,24886,26527,32059,37708,43071
+3,45021,45724,48094,50515,52813
+4,10135,11122,14449,17846,21072
+5,22527,23240,25643,28097,30427
+6,16769,17481,19881,22332,24658
+7,45076,46704,52190,57792,63110
+8,7300,8075,10690,13359,15894
+9,329066,344980,398615,453388,505387
 
 ~~~
 
-As its file extension would suggest, the file contains comma-separated
-values, and seems to contain a header row.
-
-We can use `read.table` to read this into R:
+The file contains comma-separated values and a header row. We can use `read.table` to read this into R:
 
 
 ~~~{.r}
-hh <- read.table(file="data/city__table__households.csv", header=TRUE, sep=",")
+hh <- read.table(file = "data/cities_households.csv", header = TRUE, sep = ",")
 head(hh)
 ~~~
 
 
 
 ~~~{.output}
-  city_id households_2010 households_2020 households_2030 households_2040
-1      49           43742           49969           52608           57695
-2      94           13996           16912           20425           24603
-3      95           40735           50907           61703           73879
-4      96            2276            2484            2593            2753
-5      97             762             759             787             822
-6      98           16315           19519           20639           21839
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050
+1       1   2705   2735   2836   2939   3037
+2       2  24886  26527  32059  37708  43071
+3       3  45021  45724  48094  50515  52813
+4       4  10135  11122  14449  17846  21072
+5       5  22527  23240  25643  28097  30427
+6       6  16769  17481  19881  22332  24658
 
 ~~~
 
@@ -355,20 +337,20 @@ for loading in CSV files.
 
 ~~~{.r}
 # Here is the read.csv version of the above command
-hh <- read.csv(file="data/city__table__households.csv")
+hh <- read.csv(file = "data/cities_households.csv")
 head(hh)
 ~~~
 
 
 
 ~~~{.output}
-  city_id households_2010 households_2020 households_2030 households_2040
-1      49           43742           49969           52608           57695
-2      94           13996           16912           20425           24603
-3      95           40735           50907           61703           73879
-4      96            2276            2484            2593            2753
-5      97             762             759             787             822
-6      98           16315           19519           20639           21839
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050
+1       1   2705   2735   2836   2939   3037
+2       2  24886  26527  32059  37708  43071
+3       3  45021  45724  48094  50515  52813
+4       4  10135  11122  14449  17846  21072
+5       5  22527  23240  25643  28097  30427
+6       6  16769  17481  19881  22332  24658
 
 ~~~
 
@@ -392,7 +374,7 @@ as its argument (or by pressing the "source" button in RStudio).
 
 
 To recap what we've just learned, let's have a look at our example
-data (mumber of households in various cities for various years).
+data (number of households in various cities for various years).
 
 Remember, there are a few functions we can use to interrogate data structures in R:
 
@@ -424,157 +406,51 @@ The household data is stored in a "data.frame". This is the default
 data structure when you read in data, and (as we've heard) is useful
 for storing data with mixed types of columns.
 
-Let's add a column with the name of each city and merge the two datasets:
+Let's add a column with the name of each city and county and merge the two datasets:
 
 
 ~~~{.r}
-cities <- read.table(file="data/cities.csv", header=TRUE, sep=",")
+cities <- read.csv(file="data/cities.csv")
 head(cities)
 ~~~
 
 
 
 ~~~{.output}
-  city_id       city_name county_id
-1      49 Snohomish-Rural         1
-2      94        Lynnwood         1
-3      95         Everett         1
-4      96           Brier         1
-5      97      Brier MUGA         1
-6      98         Edmonds         1
+  city_id     city_name county_id county_name
+1       1 Normandy Park        33        King
+2       2        Auburn        33        King
+3       3    King-Rural        33        King
+4       4        SeaTac        33        King
+5       5     Shoreline        33        King
+6       6    Renton PAA        33        King
 
 ~~~
-Let's look at some of the columns.
-
-~~~{.r}
-typeof(cities$city_id)
-~~~
-
-
-
-~~~{.output}
-[1] "integer"
-
-~~~
-
-
-
-~~~{.r}
-typeof(cities$city_name)
-~~~
-
-
-
-~~~{.output}
-[1] "character"
-
-~~~
-If you were expecting a the answer to be "character", you would rightly be
-surprised by the answer. Let's take a look at the class of this column:
-
-
-~~~{.r}
-class(cities$city_name)
-~~~
-
-
-
-~~~{.output}
-[1] "character"
-
-~~~
-One of the default behaviours of R is to treat any text columns as "factors"
-when reading in data. The reason for this is that text columns often represent
-categorical data, which need to be factors to be handled appropriately by
-the statistical modeling functions in R.
-
-However it's not obvious behaviour, and something that trips many people up. We can
-disable this behaviour and read in the data again.
-
-
-~~~{.r}
-options(stringsAsFactors=FALSE)
-cities <- read.table(file="data/cities.csv", header=TRUE, sep=",")
-class(cities$city_name)
-~~~
-
-
-
-~~~{.output}
-[1] "character"
-
-~~~
-
-Remember, if you do turn it off automatic conversion to factors you will need to
-explicitly convert the variables into factors when
-running statistical models.
-This can be useful, because it forces you to think about the
-question you're asking, and makes it easier to specify the ordering of the categories.
-
-However there are many in the R community who find it more sensible to
-leave this as the default behaviour.
-
-> ## Tip: Changing options {.callout} 
-> When R starts, it runs any
->code in the file `.Rprofile` in the project directory. You can make
->permanent changes to default behaviour by storing the changes in that
->file. BE CAREFUL, however. If you change R's default options,
->programs written by others may not run correctly in your environment
->and vice versa. For this reason, some argue that most such changes
->should be in your scripts, where they are visible.
-
 
 Let's merge the cities dataset with our households dataset.
 
 ~~~{.r}
-hh <- merge(hh, cities, by="city_id", all=TRUE)
+hh <- merge(hh, cities, by="city_id", all = TRUE)
 head(hh)
 ~~~
 
 
 
 ~~~{.output}
-  city_id households_2010 households_2020 households_2030 households_2040
-1       1            2617            2891            3000            3042
-2       2           23596           27690           31164           34383
-3       3           45354           49603           51937           55922
-4       4            9904           12232           14401           16365
-5       5           21511           24731           26511           28714
-6       6           16555           18963           19916           19962
-      city_name county_id
-1 Normandy Park         2
-2        Auburn         2
-3    King-Rural         2
-4       Sea Tac         2
-5     Shoreline         2
-6    Renton PAA         2
-
-~~~
-Let's add names of counties.
-
-~~~{.r}
-counties <- data.frame(county_id=1:4, county_name=c("Snohomish", "King", "Kitsap", "Pierce"))
-hh <- merge(hh, counties, by="county_id", all=TRUE)
-head(hh)
-~~~
-
-
-
-~~~{.output}
-  county_id city_id households_2010 households_2020 households_2030
-1         0      56              NA              NA              NA
-2         0     140              NA              NA              NA
-3         1     109           14853           17874           18051
-4         1     113            9488           12157           13841
-5         1     110            4836            5808            6218
-6         1     108            4464            4986            5398
-  households_2040     city_name county_name
-1              NA Covington PAA        <NA>
-2              NA      Enumclaw        <NA>
-3           18542  Everett MUGA   Snohomish
-4           15639  Lake Stevens   Snohomish
-5            6688        Monroe   Snohomish
-6            5873 Mukilteo MUGA   Snohomish
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id
+1       1   2705   2735   2836   2939   3037 Normandy Park        33
+2       2  24886  26527  32059  37708  43071        Auburn        33
+3       3  45021  45724  48094  50515  52813    King-Rural        33
+4       4  10135  11122  14449  17846  21072        SeaTac        33
+5       5  22527  23240  25643  28097  30427     Shoreline        33
+6       6  16769  17481  19881  22332  24658    Renton PAA        33
+  county_name
+1        King
+2        King
+3        King
+4        King
+5        King
+6        King
 
 ~~~
 
@@ -590,20 +466,21 @@ str(hh)
 
 
 ~~~{.output}
-'data.frame':	142 obs. of  8 variables:
- $ county_id      : int  0 0 1 1 1 1 1 1 1 1 ...
- $ city_id        : num  56 140 109 113 110 108 104 105 111 103 ...
- $ households_2010: num  NA NA 14853 9488 4836 ...
- $ households_2020: num  NA NA 17874 12157 5808 ...
- $ households_2030: num  NA NA 18051 13841 6218 ...
- $ households_2040: num  NA NA 18542 15639 6688 ...
- $ city_name      : chr  "Covington PAA" "Enumclaw" "Everett MUGA" "Lake Stevens" ...
- $ county_name    : chr  NA NA "Snohomish" "Snohomish" ...
+'data.frame':	161 obs. of  9 variables:
+ $ city_id    : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ hh2016     : int  2705 24886 45021 10135 22527 16769 45076 7300 329066 171 ...
+ $ hh2020     : int  2735 26527 45724 11122 23240 17481 46704 8075 344980 176 ...
+ $ hh2030     : int  2836 32059 48094 14449 25643 19881 52190 10690 398615 195 ...
+ $ hh2040     : int  2939 37708 50515 17846 28097 22332 57792 13359 453388 213 ...
+ $ hh2050     : int  3037 43071 52813 21072 30427 24658 63110 15894 505387 230 ...
+ $ city_name  : chr  "Normandy Park" "Auburn" "King-Rural" "SeaTac" ...
+ $ county_id  : int  33 33 33 33 33 33 33 33 33 33 ...
+ $ county_name: chr  "King" "King" "King" "King" ...
 
 ~~~
 
-We can see that the object is a `data.frame` with 142 observations (rows),
-and 8 variables (columns). Below that, we see the name of each column, followed
+We can see that the object is a `data.frame` with 161 observations (rows),
+and 9 variables (columns). Below that, we see the name of each column, followed
 by a ":", followed by the type of variable in that column, along with the first
 few entries.
 
@@ -618,32 +495,32 @@ colnames(hh)
 
 
 ~~~{.output}
-[1] "county_id"       "city_id"         "households_2010" "households_2020"
-[5] "households_2030" "households_2040" "city_name"       "county_name"    
+[1] "city_id"     "hh2016"      "hh2020"      "hh2030"      "hh2040"     
+[6] "hh2050"      "city_name"   "county_id"   "county_name"
 
 ~~~
 
 
 
 ~~~{.r}
-colnames(hh)[3:6] <- paste0("hh", seq(10, 40, by=10))
-head(hh, n=10)
+colnames(hh)[ncol(hh)] <- "county" # rename the last column
+head(hh, n = 10)
 ~~~
 
 
 
 ~~~{.output}
-   county_id city_id  hh10  hh20  hh30  hh40         city_name county_name
-1          0      56    NA    NA    NA    NA     Covington PAA        <NA>
-2          0     140    NA    NA    NA    NA          Enumclaw        <NA>
-3          1     109 14853 17874 18051 18542      Everett MUGA   Snohomish
-4          1     113  9488 12157 13841 15639      Lake Stevens   Snohomish
-5          1     110  4836  5808  6218  6688            Monroe   Snohomish
-6          1     108  4464  4986  5398  5873     Mukilteo MUGA   Snohomish
-7          1     104  1409  1474  1836  2215 Larch Way Overlap   Snohomish
-8          1     105  7804 10878 11153 11644      Bothell MUGA   Snohomish
-9          1     111  6502  8031  9007 10019         Arlington   Snohomish
-10         1     103 12883 15834 17192 18660   Mill Creek MUGA   Snohomish
+   city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id county
+1        1   2705   2735   2836   2939   3037 Normandy Park        33   King
+2        2  24886  26527  32059  37708  43071        Auburn        33   King
+3        3  45021  45724  48094  50515  52813    King-Rural        33   King
+4        4  10135  11122  14449  17846  21072        SeaTac        33   King
+5        5  22527  23240  25643  28097  30427     Shoreline        33   King
+6        6  16769  17481  19881  22332  24658    Renton PAA        33   King
+7        7  45076  46704  52190  57792  63110          Kent        33   King
+8        8   7300   8075  10690  13359  15894       Tukwila        33   King
+9        9 329066 344980 398615 453388 505387       Seattle        33   King
+10      10    171    176    195    213    230      Kent PAA        33   King
 
 ~~~
 
@@ -679,8 +556,8 @@ str(dimnames(hh))
 
 ~~~{.output}
 List of 2
- $ : chr [1:142] "1" "2" "3" "4" ...
- $ : chr [1:8] "county_id" "city_id" "hh10" "hh20" ...
+ $ : chr [1:161] "1" "2" "3" "4" ...
+ $ : chr [1:9] "city_id" "hh2016" "hh2020" "hh2030" ...
 
 ~~~
 
@@ -693,44 +570,27 @@ summary(hh)
 
 
 ~~~{.output}
-   county_id        city_id            hh10               hh20       
- Min.   :0.000   Min.   :  1.00   Min.   :     0.0   Min.   :     1  
- 1st Qu.:1.000   1st Qu.: 36.25   1st Qu.:   523.5   1st Qu.:   609  
- Median :2.000   Median : 71.50   Median :  3501.5   Median :  4200  
- Mean   :2.092   Mean   : 71.50   Mean   : 10433.7   Mean   : 12325  
- 3rd Qu.:3.000   3rd Qu.:106.75   3rd Qu.:  9080.2   3rd Qu.: 10844  
- Max.   :4.000   Max.   :142.00   Max.   :286525.0   Max.   :335516  
-                                  NA's   :2          NA's   :2       
-      hh30               hh40           city_name         county_name       
- Min.   :     2.0   Min.   :     2.0   Length:142         Length:142        
- 1st Qu.:   776.2   1st Qu.:   869.2   Class :character   Class :character  
- Median :  4332.5   Median :  4587.5   Mode  :character   Mode  :character  
- Mean   : 13614.8   Mean   : 15055.1                                        
- 3rd Qu.: 11889.0   3rd Qu.: 14257.2                                        
- Max.   :363492.0   Max.   :396033.0                                        
- NA's   :2          NA's   :2                                               
+    city_id           hh2016           hh2020           hh2030      
+ Min.   :  1.00   Min.   :     0   Min.   :     0   Min.   :     0  
+ 1st Qu.: 41.00   1st Qu.:   310   1st Qu.:   327   1st Qu.:   382  
+ Median : 82.00   Median :  2736   Median :  2789   Median :  3089  
+ Mean   : 82.79   Mean   :  9825   Mean   : 10295   Mean   : 11878  
+ 3rd Qu.:122.00   3rd Qu.:  8704   3rd Qu.:  9251   3rd Qu.: 10915  
+ Max.   :173.00   Max.   :329066   Max.   :344980   Max.   :398615  
+     hh2040           hh2050        city_name           county_id    
+ Min.   :     0   Min.   :     0   Length:161         Min.   :33.00  
+ 1st Qu.:   407   1st Qu.:   474   Class :character   1st Qu.:33.00  
+ Median :  3535   Median :  3936   Mode  :character   Median :53.00  
+ Mean   : 13495   Mean   : 15031                      Mean   :46.98  
+ 3rd Qu.: 12060   3rd Qu.: 13976                      3rd Qu.:61.00  
+ Max.   :453388   Max.   :505387                      Max.   :61.00  
+    county         
+ Length:161        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
 
 ~~~
 
-## Challenge Solutions
-
-> ## Solution to Challenge 1 {.challenge}
->
-> Create a data frame that holds the following information for yourself:
->
-> * First name
-> * Last name
-> * Height
->
-> Then use rbind to add the same information for the people sitting near you.
->
-> Now use cbind to add a column of logicals answering the question,
-> "Is there anything in this workshop you're finding confusing?"
->
-> 
-> ~~~{.r}
-> my_df <- data.frame(first_name = "Software", last_name = "Carpentry", height = 170)
-> my_df <- rbind(my_df, list("Jane", "Smith", 160))
-> my_df <- rbind(my_df, list(c("Jo", "John"), c("White", "Lee"), c(165, 179)))
-> my_df <- cbind(my_df, confused = c(FALSE, FALSE, TRUE, FALSE))
-> ~~~

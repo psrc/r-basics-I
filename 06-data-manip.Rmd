@@ -1,0 +1,66 @@
+---
+layout: page
+title: R Fundamentals I
+subtitle: Data manipulation and simple plots
+---
+
+```{r, include=FALSE}
+source("tools/chunk-options.R")
+#opts_chunk$set(fig.path = "fig/09-vectorisation-")
+# Silently load in the data so the rest of the lesson works
+hh <- read.table(file="data/cities_households.csv", header=TRUE, sep=",")
+cities <- read.csv(file="data/cities.csv")
+hh <- merge(hh, cities, by="city_id", all=TRUE)
+colnames(hh)[ncol(hh)] <- "county"
+#pierce <- subset(hh, county_name == "Pierce")
+```
+
+> ## Learning Objectives {.objectives}
+>
+> * To be able to summarize and visualize data.
+>
+
+## Data manipulation
+
+Let's try vectorisation on the `hh2050` column of the `hh` dataset.
+Make a new column in the `hh` data frame that
+contains households in units of thousands of people.
+```{r}
+hh$hh50inT <- hh$hh2050 / 1000
+head(hh)
+```
+Create a log transformation:
+```{r}
+hhlog <- hh
+hhlog[,2:5] <- log(hhlog[,2:5])
+head(hhlog)
+```
+
+Create a dataset of differences:
+```{r}
+hhdif <- cbind(hh[, c(1,7:9)], hh[,3:5] - hh[,2:4])
+head(hhdif)
+summary(hhdif)
+```
+
+## Scatter plot and histogram
+
+Plot results:
+```{r}
+plot(hh$hh2016, hh$hh2050, xlab = "2016", ylab = "2050")
+abline(0,1)
+plot(hh$hh2016, hh$hh2050, xlab = "2016", ylab = "2050", log = "xy")
+abline(0,1)
+hist(hh$hh2050 - hh$hh2016, main="Change 2050-2016")
+abline(v = 0, lwd = 2, col = "red")
+```
+
+Investigate records more than 200% increase from 2016 to 2050:
+```{r}
+lrg <- subset(hh, (hh2050 - hh2016)/hh2016 * 100 > 200)
+dim(lrg)
+plot(lrg$hh2016, lrg$hh2050, xlab = "2016", ylab = "2050", log = "xy")
+text(lrg$hh2016, lrg$hh2050, labels = lrg$city_name, pos = 3)
+abline(0,1)
+```
+
