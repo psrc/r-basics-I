@@ -594,16 +594,7 @@ retrieve the column and rownames of a matrix. The function `length` will tell yo
 > Were you right? Why / why not?
 >
 
->
-> ## Challenge 3 {.challenge}
->
-> Make another matrix, this time containing the numbers 1:50,
-> with 5 columns and 10 rows.
-> Did the `matrix` function fill your matrix by column, or by
-> row, as its default behaviour?
-> See if you can figure out how to change this.
-> (hint: read the documentation for `matrix`!)
->
+
 
 ### Factors
 
@@ -888,21 +879,4 @@ xlist$data
 > 
 > Because a matrix is really just a vector with added dimension attributes, `length`
 > gives you the total number of elements in the matrix.
->
-
->
-> ## Solution to challenge 3 {.challenge}
->
-> Make another matrix, this time containing the numbers 1:50,
-> with 5 columns and 10 rows.
-> Did the `matrix` function fill your matrix by column, or by
-> row, as its default behaviour?
-> See if you can figure out how to change this.
-> (hint: read the documentation for `matrix`!)
->
-> 
-> ~~~{.r}
-> x <- matrix(1:50, ncol=5, nrow=10)
-> x <- matrix(1:50, ncol=5, nrow=10, byrow = TRUE) # to fill by row
-> ~~~
 >

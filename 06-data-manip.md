@@ -45,27 +45,27 @@ Create a log transformation:
 
 ~~~{.r}
 hhlog <- hh
-hhlog[,2:5] <- log(hhlog[,2:5])
+hhlog[,2:6] <- log(hhlog[,2:6])
 head(hhlog)
 ~~~
 
 
 
 ~~~{.output}
-  city_id    hh2016    hh2020   hh2030    hh2040 hh2050     city_name county_id
-1       1  7.902857  7.913887  7.95015  7.985825   3037 Normandy Park        33
-2       2 10.122061 10.185918 10.37533 10.537628  43071        Auburn        33
-3       3 10.714884 10.730379 10.78091 10.830026  52813    King-Rural        33
-4       4  9.223750  9.316680  9.57838  9.789535  21072        SeaTac        33
-5       5 10.022470 10.053630 10.15203 10.243418  30427     Shoreline        33
-6       6  9.727287  9.768870  9.89752 10.013776  24658    Renton PAA        33
-  county hh50inT
-1   King   3.037
-2   King  43.071
-3   King  52.813
-4   King  21.072
-5   King  30.427
-6   King  24.658
+  city_id    hh2016    hh2020   hh2030    hh2040    hh2050     city_name
+1       1  7.902857  7.913887  7.95015  7.985825  8.018625 Normandy Park
+2       2 10.122061 10.185918 10.37533 10.537628 10.670605        Auburn
+3       3 10.714884 10.730379 10.78091 10.830026 10.874513    King-Rural
+4       4  9.223750  9.316680  9.57838  9.789535  9.955700        SeaTac
+5       5 10.022470 10.053630 10.15203 10.243418 10.323086     Shoreline
+6       6  9.727287  9.768870  9.89752 10.013776 10.112857    Renton PAA
+  county_id county hh50inT
+1        33   King   3.037
+2        33   King  43.071
+3        33   King  52.813
+4        33   King  21.072
+5        33   King  30.427
+6        33   King  24.658
 
 ~~~
 
@@ -124,7 +124,7 @@ plot(hh$hh2016, hh$hh2050, xlab = "2016", ylab = "2050")
 abline(0,1)
 ~~~
 
-<img src="fig/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="fig/06-data-manip-unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 ~~~{.r}
 plot(hh$hh2016, hh$hh2050, xlab = "2016", ylab = "2050", log = "xy")
@@ -152,14 +152,14 @@ logarithmic plot
 abline(0,1)
 ~~~
 
-<img src="fig/unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="fig/06-data-manip-unnamed-chunk-5-2.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 ~~~{.r}
 hist(hh$hh2050 - hh$hh2016, main="Change 2050-2016")
 abline(v = 0, lwd = 2, col = "red")
 ~~~
 
-<img src="fig/unnamed-chunk-5-3.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="fig/06-data-manip-unnamed-chunk-5-3.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 Investigate records more than 200% increase from 2016 to 2050:
 
@@ -183,5 +183,5 @@ text(lrg$hh2016, lrg$hh2050, labels = lrg$city_name, pos = 3)
 abline(0,1)
 ~~~
 
-<img src="fig/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="fig/06-data-manip-unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 

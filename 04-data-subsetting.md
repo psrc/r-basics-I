@@ -1,8 +1,7 @@
 ---
 layout: page
-title: R for Data Analysis
+title: R Fundamentals I
 subtitle: Subsetting data
-minutes: 45
 ---
 
 
@@ -156,7 +155,7 @@ named numeric(0)
 
 ~~~
 
-> ##Vector numbering in R starts at 1 {.callout} 
+> ## Vector numbering in R starts at 1 {.callout} 
 > 
 > In many programming languages (C and python, for example), the first
 > element of a vector has an index of 0. In R, the first element is 1.
@@ -213,7 +212,7 @@ x[c(-1, -5)]  # or x[-c(1,5)]
 > 
 > ~~~
 >
-> This gives a somewhat cryptic error:
+> This gives a somewhat cryptic error.
 >
 > But remember the order of operations. `:` is really a function, so
 > what happens is it takes its first argument as -1, and second as 3,
@@ -257,17 +256,29 @@ x
 >
 > Given the following code:
 >
-> ```{.r}
+> 
+> ~~~{.r}
 > y <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 > names(y) <- c('a', 'b', 'c', 'd', 'e')
 > print(y)
-> ```
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+>   a   b   c   d   e 
+> 5.4 6.2 7.1 4.8 7.5 
+> 
+> ~~~
 >
 > Come up with at least 3 different commands that will produce the following output:
 >
-> ```{.r, echo=FALSE}
-> y[2:4]
-> ```
+> 
+> ~~~{.output}
+>   b   c   d 
+> 6.2 7.1 4.8 
+> 
+> ~~~
 >
 
 ## Subsetting through logical operations
@@ -331,27 +342,6 @@ FALSE FALSE FALSE FALSE  TRUE
 Similarly other functions for identifying special values, e.g.`is.nan` (`Nan` values), `is.infinite` (`Inf` values), `is.finite` (values that are not `NA`, `NaN`, `Inf`).
 
 
-> ## Challenge {.challenge}
->
-> Given the following code:
->
-> 
-> ~~~{.r}
-> x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
-> names(x) <- c('a', 'b', 'c', 'd', 'e')
-> print(x)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
->   a   b   c   d   e 
-> 5.4 6.2 7.1 4.8 7.5 
-> 
-> ~~~
->
-> Write a subsetting command to return the values in x that are greater than 4 and less than 7.
->
 
 
 ## Subsetting by name
@@ -386,7 +376,7 @@ names(x) == "a"
 
 
 ~~~{.output}
-[1]  TRUE FALSE FALSE FALSE FALSE
+[1]  TRUE FALSE FALSE FALSE
 
 ~~~
 The condition operator is applied to every name of the vector `x`. Only the
@@ -417,8 +407,8 @@ x[-which(names(x) == "a")]
 
 
 ~~~{.output}
-  b   c   d   e 
-6.2 7.1 4.8 7.5 
+  b   c   e 
+6.2 7.1 7.5 
 
 ~~~
 
@@ -435,77 +425,13 @@ x[-which(names(x) %in% c("a", "c"))]
 
 
 ~~~{.output}
-  b   d   e 
-6.2 4.8 7.5 
+  b   e 
+6.2 7.5 
 
 ~~~
 
 The `%in%` goes through each element of its left argument, in this case the
 names of `x`, and asks, "Does this element occur in the second argument?".
-
-> ## Tip: Non-unique names {.callout}
->
-> You should be aware that it is possible for multiple elements in a
-> vector to have the same name. (For a data frame, columns can have
-> the same name --- although R tries to avoid this --- but row names
-> must be unique.) Consider these examples:
-
->
->~~~{.r}
-> x <- 1:3
-> x
->~~~
->
->
->
->~~~{.output}
->[1] 1 2 3
->
->~~~
->
->
->
->~~~{.r}
-> names(x) <- c('a', 'a', 'a')  
-> x
->~~~
->
->
->
->~~~{.output}
->a a a 
->1 2 3 
->
->~~~
->
->
->
->~~~{.r}
-> x['a']  # only returns first value
->~~~
->
->
->
->~~~{.output}
->a 
->1 
->
->~~~
->
->
->
->~~~{.r}
-> x[which(names(x) == 'a')]  # returns all three values
->~~~
->
->
->
->~~~{.output}
->a a a 
->1 2 3 
->
->~~~
-
 
 
 > ## Tip: Getting help for operators {.callout}
@@ -525,16 +451,8 @@ names(x) == c('a', 'c')
 
 
 
-~~~{.error}
-Warning in names(x) == c("a", "c"): longer object length is not a multiple of
-shorter object length
-
-~~~
-
-
-
 ~~~{.output}
-[1]  TRUE FALSE  TRUE
+[1]  TRUE FALSE FALSE FALSE
 
 ~~~
 
@@ -571,8 +489,16 @@ names(x) == c('a', 'c', 'e')
 
 
 
+~~~{.error}
+Warning in names(x) == c("a", "c", "e"): longer object length is not a multiple
+of shorter object length
+
+~~~
+
+
+
 ~~~{.output}
-[1]  TRUE FALSE FALSE
+[1]  TRUE FALSE FALSE FALSE
 
 ~~~
 
@@ -589,7 +515,7 @@ to its columns:
 
 ~~~{.r}
 set.seed(1)
-m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m <- matrix(rnorm(6*4), ncol = 4, nrow = 6)
 m[3:4, c(3,1)]
 ~~~
 
@@ -643,7 +569,7 @@ If you want to keep the output as a matrix, you need to specify a *third* argume
 
 
 ~~~{.r}
-m[3, , drop=FALSE]
+m[3, , drop = FALSE]
 ~~~
 
 
@@ -675,7 +601,7 @@ vector are arranged column-wise:
 
 
 ~~~{.r}
-matrix(1:6, nrow=2, ncol=3)
+matrix(1:6, nrow = 2, ncol = 3)
 ~~~
 
 
@@ -687,11 +613,11 @@ matrix(1:6, nrow=2, ncol=3)
 
 ~~~
 
-If you wish to populate the matrix by row, use `byrow=TRUE`:
+If you wish to populate the matrix by row, use `byrow = TRUE`:
 
 
 ~~~{.r}
-matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
+matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
 ~~~
 
 
@@ -714,7 +640,7 @@ instead of their row and column indices.
 >
 
 ~~~{.r}
-a <- array(1:12, dim=c(2,3,2))
+a <- array(1:12, dim = c(2,3,2))
 dim(a)
 ~~~
 
@@ -740,36 +666,6 @@ a[,,2]
 
 ~~~
 
-> ## Challenge 2 {.challenge}
->
-> Given the following code:
->
-> 
-> ~~~{.r}
-> m <- matrix(1:18, nrow=3, ncol=6)
-> print(m)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
->      [,1] [,2] [,3] [,4] [,5] [,6]
-> [1,]    1    4    7   10   13   16
-> [2,]    2    5    8   11   14   17
-> [3,]    3    6    9   12   15   18
-> 
-> ~~~
->
-> 1. Which of the following commands will extract the values 11 and 14?
->
-> A. `m[2,4,2,5]`
->
-> B. `m[2:5]`
->
-> C. `m[4:5,2]`
->
-> D. `m[2,c(4,5)]`
->
 
 
 ## List subsetting
@@ -888,26 +784,16 @@ xlist$data
 
 
 ~~~{.output}
-  county_id city_id  hh10  hh20  hh30  hh40     city_name county_name
-1         0      56    NA    NA    NA    NA Covington PAA        <NA>
-2         0     140    NA    NA    NA    NA      Enumclaw        <NA>
-3         1     109 14853 17874 18051 18542  Everett MUGA   Snohomish
-4         1     113  9488 12157 13841 15639  Lake Stevens   Snohomish
-5         1     110  4836  5808  6218  6688        Monroe   Snohomish
-6         1     108  4464  4986  5398  5873 Mukilteo MUGA   Snohomish
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id county
+1       1   2705   2735   2836   2939   3037 Normandy Park        33   King
+2       2  24886  26527  32059  37708  43071        Auburn        33   King
+3       3  45021  45724  48094  50515  52813    King-Rural        33   King
+4       4  10135  11122  14449  17846  21072        SeaTac        33   King
+5       5  22527  23240  25643  28097  30427     Shoreline        33   King
+6       6  16769  17481  19881  22332  24658    Renton PAA        33   King
 
 ~~~
 
-> ## Challenge 3 {.challenge}
-> Given the following list:
->
-> 
-> ~~~{.r}
-> xlist <- list(a = "PSRC", b = 1:10, data = head(hh))
-> ~~~
->
-> Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. 
-> Hint: the number 2 is contained within the "b" item in the list.
 
 
 ## Subsetting data frames
@@ -926,13 +812,13 @@ head(hh[1])
 
 
 ~~~{.output}
-  county_id
-1         0
-2         0
-3         1
-4         1
-5         1
-6         1
+  city_id
+1       1
+2       2
+3       3
+4       4
+5       5
+6       6
 
 ~~~
 
@@ -946,7 +832,7 @@ head(hh[["city_id"]])
 
 
 ~~~{.output}
-[1]  56 140 109 113 110 108
+[1] 1 2 3 4 5 6
 
 ~~~
 
@@ -960,8 +846,8 @@ head(hh$city_name)
 
 
 ~~~{.output}
-[1] "Covington PAA" "Enumclaw"      "Everett MUGA"  "Lake Stevens" 
-[5] "Monroe"        "Mukilteo MUGA"
+[1] "Normandy Park" "Auburn"        "King-Rural"    "SeaTac"       
+[5] "Shoreline"     "Renton PAA"   
 
 ~~~
 
@@ -975,10 +861,10 @@ hh[1:3,]
 
 
 ~~~{.output}
-  county_id city_id  hh10  hh20  hh30  hh40     city_name county_name
-1         0      56    NA    NA    NA    NA Covington PAA        <NA>
-2         0     140    NA    NA    NA    NA      Enumclaw        <NA>
-3         1     109 14853 17874 18051 18542  Everett MUGA   Snohomish
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id county
+1       1   2705   2735   2836   2939   3037 Normandy Park        33   King
+2       2  24886  26527  32059  37708  43071        Auburn        33   King
+3       3  45021  45724  48094  50515  52813    King-Rural        33   King
 
 ~~~
 
@@ -993,8 +879,8 @@ hh[3,]
 
 
 ~~~{.output}
-  county_id city_id  hh10  hh20  hh30  hh40    city_name county_name
-3         1     109 14853 17874 18051 18542 Everett MUGA   Snohomish
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050  city_name county_id county
+3       3  45021  45724  48094  50515  52813 King-Rural        33   King
 
 ~~~
 
@@ -1010,22 +896,22 @@ subset(hh, city_name == "Seattle")
 
 
 ~~~{.output}
-   county_id city_id   hh10   hh20   hh30   hh40 city_name county_name
-55         2       9 286525 335516 363492 396033   Seattle        King
+  city_id hh2016 hh2020 hh2030 hh2040 hh2050 city_name county_id county
+9       9 329066 344980 398615 453388 505387   Seattle        33   King
 
 ~~~
 
 
 
 ~~~{.r}
-pierce <- subset(hh, county_name == "Pierce")
+pierce <- subset(hh, county == "Pierce")
 dim(pierce)
 ~~~
 
 
 
 ~~~{.output}
-[1] 26  8
+[1] 47  9
 
 ~~~
 
@@ -1038,25 +924,25 @@ head(pierce)
 
 
 ~~~{.output}
-    county_id city_id  hh10  hh20   hh30   hh40    city_name county_name
-117         4      29 57428 64486  65252  66392 Pierce-Rural      Pierce
-118         4      59 78892 95102 117175 141291       Tacoma      Pierce
-119         4      53 67417 85491  93594  93893           UU      Pierce
-120         4      76  4355  4276   4936   5648       DuPont      Pierce
-121         4      77  3419  4429   5295   6069   Gig Harbor      Pierce
-122         4      78   318   370    423    463          Roy      Pierce
+   city_id hh2016 hh2020 hh2030 hh2040 hh2050    city_name county_id county
+29      29  59710  60461  62995  65582  68039 Pierce-Rural        53 Pierce
+53      53  13452  14098  16277  18503  20615           UU        53 Pierce
+58      59  82851  88758 108668 129001 148304       Tacoma        53 Pierce
+73      74   2736   2789   2969   3152   3326   Steilacoom        53 Pierce
+74      75   3885   3918   4029   4142   4250         JBLM        53 Pierce
+75      76   3530   4131   6156   8224  10188       DuPont        53 Pierce
 
 ~~~
 
-> ## Challenge 5 {.challenge}
+> ## Challenge 2 {.challenge}
 >
 > Fix each of the following common data frame subsetting errors:
 >
-> 1. Extract observations for cities in county 1
+> 1. Extract observations for cities in county 33
 >
 > 
 > ~~~{.r}
-> hh[hh$county_id = 1,]
+> hh[hh$county_id = 33,]
 > ~~~
 >
 > 2. Extract all columns except one through five
@@ -1066,30 +952,30 @@ head(pierce)
 > hh[,-1:5]
 > ~~~
 >
-> 3. Extract the rows where the number of households in 2010 is larger than 50,000
+> 3. Extract the rows where the number of households in 2016 is larger than 50,000
 >
 > 
 > ~~~{.r}
-> hh[hh$hh10 > 50000]
+> hh[hh$hh2016 > 50000]
 > ~~~
 >
-> 4. Extract the first row, and the sixth and seventh columns
+> 4. Extract the first row, and the seventh and eighth columns
 >   (`city_name` and `county_id`).
 >
 > 
 > ~~~{.r}
-> hh[1, 6, 7]
+> hh[1, 7, 8]
 > ~~~
 >
-> 5. Advanced: extract rows that contain information for counties  3 and 4
+> 5. Advanced: extract rows that contain information for counties 61 and 35
 >
 > 
 > ~~~{.r}
-> hh[hh$county_id == 3 | 4,]
+> hh[hh$county_id == 61 | 35,]
 > ~~~
 >
 
-> ## Challenge 6 {.challenge}
+> ## Challenge 3 {.challenge}
 >
 > 1. Why does `hh[1:20]` return an error? How does it differ from `hh[1:20, ]`?
 >
@@ -1119,7 +1005,7 @@ head(pierce)
 > 
 > ~~~
 >
-> 1. Come up with at least 3 different commands that will produce the following output:
+> Come up with at least 3 different commands that will produce the following output:
 >
 > 
 > ~~~{.output}
@@ -1138,113 +1024,62 @@ head(pierce)
 >
 >
 
+
 > ## Solution to challenge 2 {.challenge}
->
-> Given the following code:
->
-> 
-> ~~~{.r}
-> m <- matrix(1:18, nrow=3, ncol=6)
-> print(m)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
->      [,1] [,2] [,3] [,4] [,5] [,6]
-> [1,]    1    4    7   10   13   16
-> [2,]    2    5    8   11   14   17
-> [3,]    3    6    9   12   15   18
-> 
-> ~~~
->
-> 1. Which of the following commands will extract the values 11 and 14?
->
-> A. `m[2,4,2,5]`
->
-> B. `m[2:5]`
->
-> C. `m[4:5,2]`
->
-> D. `m[2,c(4,5)]`
->
-> Answer: D
-
-> ## Solution to challenge 3 {.challenge}
-> Given the following list:
->
-> 
-> ~~~{.r}
-> xlist <- list(a = "PSRC", b = 1:10, data = head(hh))
-> ~~~
->
-> Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. 
-> Hint: the number 2 is contained within the "b" item in the list.
->
-> 
-> ~~~{.r}
-> xlist$b[2]
-> xlist[[2]][2]
-> xlist[["b"]][2]
-> ~~~
-
-
-> ## Solution to challenge 5 {.challenge}
 >
 > Fix each of the following common data frame subsetting errors:
 >
-> 1. Extract observations collected for the year 1957
+> 1. Extract observations for cities in county 33
 >
 > 
 > ~~~{.r}
-> # hh[hh$county_id = 1,]
-> hh[hh$county_id == 1,]
+> # hh[hh$county_id = 33,]
+> hh[hh$county_id == 33,]
 > ~~~
 >
-> 2. Extract all columns except 1 through to 4
+> 2. Extract all columns except 1 through 5
 >
 > 
 > ~~~{.r}
-> # hh[,-1:4]
+> # hh[,-1:5]
 > hh[,-(1:5)]
 > ~~~
 >
-> 3. Extract the rows where the number of households in 2010 is larger than 50,000
+> 3. Extract the rows where the number of households in 2016 is larger than 50,000
 >
 > 
 > ~~~{.r}
-> # hh[hh$hh2010 > 50000]
-> hh[hh$hh10 > 50000, ]
+> # hh[hh$hh2016 > 50000]
+> hh[hh$hh2016 > 50000, ]
 > ~~~
 >
-> 4. Extract the first row, and the sixth and seventh columns
+> 4. Extract the first row, and the seventh and eighth columns
 >   (`city_name` and `county_id`).
 >
 > 
 > ~~~{.r}
-> # hh[1, 6, 7]
-> hh[1, c(6, 7)]
+> # hh[1, 7, 8]
+> hh[1, c(7, 8)]
 > ~~~
 >
-> 5. Advanced: extract rows that contain information for counties  3 and 4
+> 5. Advanced: extract rows that contain information for counties  61 and 35
 >
 > 
 > ~~~{.r}
-> # hh[hh$county_id == 3 | 4,]
-> hh[hh$county_id == 3 | hh$county_id == 4,]
-> hh[hh$county_id %in% c(3, 4),]
-> hh[hh$county_id %in% 3:4,]
+> # hh[hh$county_id == 61 | 35,]
+> hh[hh$county_id == 61 | hh$county_id == 35,]
+> hh[hh$county_id %in% c(61, 35),]
 > ~~~
 >
 
-> ## Solution to challenge 6 {.challenge}
+> ## Solution to challenge 3 {.challenge}
 >
 > 1. Why does `hh[1:20]` return an error? How does it differ from `hh[1:20, ]`?
 >
 > Answer: `hh` is a data.frame so needs to be subsetted on two dimensions. `hh[1:20, ]` subsets the data to give the first 20 rows and all columns.
 >
 > 2. Create a new `data.frame` called `hh_small` that only contains rows 1 through 9
-> and 19 through 23. You can do this in one or two steps.
+> and 19 through 23. 
 >
 > 
 > ~~~{.r}

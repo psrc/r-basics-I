@@ -6,13 +6,12 @@ subtitle: Data manipulation and simple plots
 
 ```{r, include=FALSE}
 source("tools/chunk-options.R")
-#opts_chunk$set(fig.path = "fig/09-vectorisation-")
+opts_chunk$set(fig.path = "fig/06-data-manip-")
 # Silently load in the data so the rest of the lesson works
 hh <- read.table(file="data/cities_households.csv", header=TRUE, sep=",")
 cities <- read.csv(file="data/cities.csv")
 hh <- merge(hh, cities, by="city_id", all=TRUE)
 colnames(hh)[ncol(hh)] <- "county"
-#pierce <- subset(hh, county_name == "Pierce")
 ```
 
 > ## Learning Objectives {.objectives}
@@ -32,7 +31,7 @@ head(hh)
 Create a log transformation:
 ```{r}
 hhlog <- hh
-hhlog[,2:5] <- log(hhlog[,2:5])
+hhlog[,2:6] <- log(hhlog[,2:6])
 head(hhlog)
 ```
 

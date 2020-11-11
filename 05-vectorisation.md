@@ -1,8 +1,7 @@
 ---
 layout: page
-title: R for Data Analysis
+title: R Fundamentals I
 subtitle: Vectorisation
-minutes: 30
 ---
 
 
@@ -64,7 +63,7 @@ Vectorised operations work element-wise on matrices:
 
 
 ~~~{.r}
-m <- matrix(1:12, nrow=3, ncol=4)
+m <- matrix(1:12, nrow = 3, ncol = 4)
 m * -1  
 ~~~
 
@@ -86,7 +85,7 @@ m * -1
 > 
 > 
 > ~~~{.r}
-> m %*% matrix(1, nrow=4, ncol=1)
+> m %*% matrix(1, nrow = 4, ncol = 1)
 > ~~~
 > 
 > 
@@ -102,7 +101,7 @@ m * -1
 > 
 > 
 > ~~~{.r}
-> matrix(1:4, nrow=1) %*% matrix(1:4, ncol=1)
+> matrix(1:4, nrow = 1) %*% matrix(1:4, ncol = 1)
 > ~~~
 > 
 > 
@@ -163,7 +162,7 @@ m * x
 To do it by rows, first create a matrix from the vector and then combine the two matrices:
 
 ~~~{.r}
-xm <- matrix(rep(x, 3), nrow=3, byrow=TRUE)
+xm <- matrix(rep(x, 3), nrow = 3, byrow = TRUE)
 xm
 ~~~
 
@@ -194,15 +193,13 @@ m * xm
 ~~~
 
 
-
-
-> ## Challenge 3 {.challenge}
+> ## Challenge 1 {.challenge}
 >
 > Given the following matrix:
 >
 > 
 > ~~~{.r}
-> m <- matrix(1:12, nrow=3, ncol=4)
+> m <- matrix(1:12, nrow = 3, ncol = 4)
 > m
 > ~~~
 > 
@@ -226,19 +223,6 @@ m * xm
 > Did you get the output you expected? If not, ask a helper!
 >
 
-> ## Challenge 4 {.challenge}
->
-> We're interested in looking at the sum of the
-> following sequence of fractions:
->
-> 
-> ~~~{.r}
->  x = 1/(1^2) + 1/(2^2) + 1/(3^2) + ... + 1/(n^2)
-> ~~~
->
-> This would be tedious to type out, and impossible for high values of
-> n.  Use vectorisation to compute x when n=100. What is the sum when
-> n=10,000?
 
 
 ## Applying functions across rows/columns
@@ -330,32 +314,66 @@ apply(m, 2, sum) # sum across columns
 
 ~~~
 
-Similarly, with our pierce subset dataset:
+Similarly, with our `pierce` subset dataset created in the previous session, we can get household totals:
 
 ~~~{.r}
-apply(pierce[,3:6], 2, sum)
+apply(pierce[,2:6], 2, sum)
 ~~~
 
 
 
 ~~~{.output}
-  hh10   hh20   hh30   hh40 
-299055 360567 409423 462854 
+hh2016 hh2020 hh2030 hh2040 hh2050 
+320054 335245 386446 438732 488373 
 
 ~~~
-and the households dataset:
+and the all-cities `hh` dataset:
 
 ~~~{.r}
-apply(hh[,3:6], 2, sum)
+apply(hh[,2:6], 2, sum)
 ~~~
 
 
 
 ~~~{.output}
-hh10 hh20 hh30 hh40 
-  NA   NA   NA   NA 
+ hh2016  hh2020  hh2030  hh2040  hh2050 
+1581863 1657497 1912422 2172765 2419919 
 
 ~~~
+
+However, for a dataset with missing values:
+
+~~~{.r}
+df <- data.frame(id = letters[1:5], X = c(NA, rep(100, 4)), Y = c(rep(5, 3), NA, NA))
+df
+~~~
+
+
+
+~~~{.output}
+  id   X  Y
+1  a  NA  5
+2  b 100  5
+3  c 100  5
+4  d 100 NA
+5  e 100 NA
+
+~~~
+
+we get:
+
+~~~{.r}
+apply(df[,2:3], 2, sum)
+~~~
+
+
+
+~~~{.output}
+ X  Y 
+NA NA 
+
+~~~
+
 because
 
 ~~~{.r}
@@ -370,6 +388,7 @@ sum(c(3, NA))
 ~~~
 
 
+but
 
 ~~~{.r}
 sum(c(3, NA), na.rm=TRUE)
@@ -381,29 +400,31 @@ sum(c(3, NA), na.rm=TRUE)
 [1] 3
 
 ~~~
+
 Therefore
 
 ~~~{.r}
-apply(hh[,3:6], 2, sum, na.rm=TRUE)
+apply(df[,2:3], 2, sum, na.rm=TRUE)
 ~~~
 
 
 
 ~~~{.output}
-   hh10    hh20    hh30    hh40 
-1460716 1725533 1906077 2107710 
+  X   Y 
+400  15 
 
 ~~~
 
+
 ## Challenge solutions
 
-> ## Solution to challenge 3 {.challenge}
+> ## Solution to challenge 1 {.challenge}
 >
 > Given the following matrix:
 >
 > 
 > ~~~{.r}
-> m <- matrix(1:12, nrow=3, ncol=4)
+> m <- matrix(1:12, nrow = 3, ncol = 4)
 > m
 > ~~~
 > 
@@ -454,101 +475,4 @@ apply(hh[,3:6], 2, sum, na.rm=TRUE)
 > ~~~
 >
 
-> ##  Challenge 4 {.challenge}
->
-> We're interested in looking at the sum of the
-> following sequence of fractions:
->
-> 
-> ~~~{.r}
->  x = 1/(1^2) + 1/(2^2) + 1/(3^2) + ... + 1/(n^2)
-> ~~~
->
-> This would be tedious to type out, and impossible for
-> high values of n.
-> Can you use vectorisation to compute x, when n=100?
-> How about when n=10,000?
->
-> 
-> ~~~{.r}
-> sum(1/(1:100)^2)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.634984
-> 
-> ~~~
-> 
-> 
-> 
-> ~~~{.r}
-> sum(1/(1:1e04)^2)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.644834
-> 
-> ~~~
-> 
-> 
-> 
-> ~~~{.r}
-> n <- 10000
-> sum(1/(1:n)^2)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.644834
-> 
-> ~~~
-> 
-> We can also obtain the same results using a function:
-> 
-> ~~~{.r}
-> inverse_sum_of_squares <- function(n) {
->   sum(1/(1:n)^2)
-> }
-> inverse_sum_of_squares(100)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.634984
-> 
-> ~~~
-> 
-> 
-> 
-> ~~~{.r}
-> inverse_sum_of_squares(10000)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.644834
-> 
-> ~~~
-> 
-> 
-> 
-> ~~~{.r}
-> n <- 10000
-> inverse_sum_of_squares(n)
-> ~~~
-> 
-> 
-> 
-> ~~~{.output}
-> [1] 1.644834
-> 
-> ~~~
->
 

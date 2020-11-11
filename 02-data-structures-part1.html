@@ -260,14 +260,6 @@
 <p>What do you think will be the result of <code>length(x)</code>? Try it. Were you right? Why / why not?</p>
 </div>
 </section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="challenge-3"><span class="glyphicon glyphicon-pencil"></span>Challenge 3</h2>
-</div>
-<div class="panel-body">
-<p>Make another matrix, this time containing the numbers 1:50, with 5 columns and 10 rows. Did the <code>matrix</code> function fill your matrix by column, or by row, as its default behaviour? See if you can figure out how to change this. (hint: read the documentation for <code>matrix</code>!)</p>
-</div>
-</section>
 <h3 id="factors">Factors</h3>
 <p>Factors are special vectors that represent categorical data. Factors can be ordered or unordered and are important for modeling functions such as <code>aov()</code>, <code>lm()</code> and <code>glm()</code> and also in plot methods.</p>
 <p>We can create factors using the <code>factor</code> function:</p>
@@ -394,16 +386,6 @@ $c
 <pre class="output"><code>[1] 18
 </code></pre>
 <p>Because a matrix is really just a vector with added dimension attributes, <code>length</code> gives you the total number of elements in the matrix.</p>
-</div>
-</section>
-<section class="challenge panel panel-success">
-<div class="panel-heading">
-<h2 id="solution-to-challenge-3"><span class="glyphicon glyphicon-pencil"></span>Solution to challenge 3</h2>
-</div>
-<div class="panel-body">
-<p>Make another matrix, this time containing the numbers 1:50, with 5 columns and 10 rows. Did the <code>matrix</code> function fill your matrix by column, or by row, as its default behaviour? See if you can figure out how to change this. (hint: read the documentation for <code>matrix</code>!)</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dt">ncol=</span><span class="dv">5</span>, <span class="dt">nrow=</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb98-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">50</span>, <span class="dt">ncol=</span><span class="dv">5</span>, <span class="dt">nrow=</span><span class="dv">10</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>) <span class="co"># to fill by row</span></a></code></pre></div>
 </div>
 </section>
         </div>

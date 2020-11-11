@@ -23,7 +23,73 @@
         <div class="col-md-10 col-md-offset-1">
                     <a href="index.html"><h1 class="title">R Fundamentals I</h1></a>
           <h2 class="subtitle">Homework</h2>
-          <p>Let’s practice what you learned in this class. You will read data, transform columns, subset dataset, plot and extract information.</p>
+          <p>Let’s practice what you learned in this class. You will subset vectors and matrices, read data, transform columns, subset dataset, plot and extract information. Be ready to self-study material that we did not get to cover in the class.</p>
+<h2 id="part-i">Part I</h2>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-1"><span class="glyphicon glyphicon-pencil"></span>Challenge 1</h2>
+</div>
+<div class="panel-body">
+<p>Make a matrix containing the numbers 1:50, with 5 columns and 10 rows. Did the <code>matrix</code> function fill your matrix by column, or by row, as its default behaviour? See if you can figure out how to change this. (hint: read the documentation for <code>matrix</code>!)</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-2"><span class="glyphicon glyphicon-pencil"></span>Challenge 2</h2>
+</div>
+<div class="panel-body">
+<p>Please study the various ways of subsetting vectors in <a href="04-data-subsetting.html">Chapter 4 of this class</a>, especially subsetting by logical operations. Then, given the following code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>##   a   b   c   d   e 
+## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<p>Write a subsetting command to return the values in x that are greater than 4 and less than 7.</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-3"><span class="glyphicon glyphicon-pencil"></span>Challenge 3</h2>
+</div>
+<div class="panel-body">
+<p>Please study the section on subsetting matrices in <a href="04-data-subsetting.html">Chapter 4</a>.</p>
+<p>Given the following code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">print</span>(m)</a></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    1    4    7   10   13   16
+## [2,]    2    5    8   11   14   17
+## [3,]    3    6    9   12   15   18</code></pre>
+<ol type="1">
+<li>Which of the following commands will extract the values 11 and 14?</li>
+</ol>
+<p>A. <code>m[2,4,2,5]</code></p>
+<p>B. <code>m[2:5]</code></p>
+<p>C. <code>m[4:5,2]</code></p>
+<p>D. <code>m[2,c(4,5)]</code></p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-4"><span class="glyphicon glyphicon-pencil"></span>Challenge 4</h2>
+</div>
+<div class="panel-body">
+<p>Given the following list (where <code>hh</code> is the households data frame created in the class):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">xlist &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="st">&quot;PSRC&quot;</span>, <span class="dt">b =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">data =</span> <span class="kw">head</span>(hh))</a></code></pre></div>
+<p>Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. Hint: the number 2 is contained within the “b” item in the list.</p>
+</div>
+</section>
+<section class="challenge panel panel-success">
+<div class="panel-heading">
+<h2 id="challenge-5"><span class="glyphicon glyphicon-pencil"></span>Challenge 5</h2>
+</div>
+<div class="panel-body">
+<p>Vectorisation is one of the most important principles of R, see <a href="05-vectorisation.html">Chapter 5</a> for details. We’re interested in looking at the sum of the following sequence of fractions:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"> x =<span class="st"> </span><span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span><span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>(<span class="dv">3</span><span class="op">^</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>... <span class="op">+</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span>(n<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<p>This would be tedious to type out, and impossible for high values of n. Use vectorisation to compute x when n=100. What is the sum when n=10,000?</p>
+</div>
+</section>
+<h2 id="part-ii">Part II</h2>
 <p>Write a script that reads the datasets “indicators2050.csv” and “cities.csv”, and joins them on the column <code>city_id</code>. This dataset contain 2050 target values for population, households and employment. Using the R functionality you learned, can you answer the following <strong>questions</strong>:</p>
 <ol type="1">
 <li>How many cities are in the dataset?</li>
@@ -35,11 +101,11 @@
 </ol>
 <p><strong>Steps</strong> to get there:</p>
 <ol type="1">
-<li>For reading and merging datasets, see Part 3 of this class. Since these are both csv files, using <code>read.csv</code> is simpler than <code>read.table</code>.</li>
-<li>Using the <code>subset</code> function remove rows with zero population. You should now have 160 records. Check with the <code>dim</code> or <code>nrow</code> function.</li>
+<li>For reading and merging datasets, see <a href="03-data-structures-part2.html">Chapter 3</a> of this class. Since these are both csv files, using <code>read.csv</code> is simpler than <code>read.table</code>.</li>
+<li>Study the use of the <code>subset</code> function in <a href="04-data-subsetting.html">Chapter 4</a>, section Subsetting data frames. Using the <code>subset</code> function remove rows with zero population. You should now have 160 records. Check with the <code>dim</code> or <code>nrow</code> function.</li>
 <li>Compute a new column of household size, using the households and population columns.</li>
 <li>Use the <code>summary</code> function to view summary statistics, such as the mean and median.</li>
-<li>For creating a histogram, see Part 6 of this class. For setting the range of the x-axis, use <code>?hist</code> to see additional arguments. Note that <code>col</code> for defining colors is a graphical parameter, for which the help file can be viewed by <code>?par</code>. For example, making the vertical line dashed, pass <code>lty=2</code> to the <code>abline</code> command.</li>
+<li>For creating a histogram, see <a href="06-data-manip.html">Chapter 6</a> of this class. For setting the range of the x-axis, use <code>?hist</code> to see additional arguments. Note that <code>col</code> for defining colors is a graphical parameter, for which the help file can be viewed by <code>?par</code>. For example, making the vertical line dashed, pass <code>lty=2</code> to the <code>abline</code> command.</li>
 <li>Compute a new column of employment per capita.</li>
 <li>Use the <code>subset</code> function to answer question 5.</li>
 <li>For question 6, create a subset of the dataset corresponding to the given population (should have 92 records). Create a scatter plot of households and employment for this subsets, as well as a <code>x=y</code> line. To what city does the biggest outlier belong to? Answer the last question by a visual assessment of the scatter plot.</li>

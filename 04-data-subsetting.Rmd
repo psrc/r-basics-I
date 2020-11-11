@@ -1,20 +1,16 @@
 ---
 layout: page
-title: R for Data Analysis
+title: R Fundamentals I
 subtitle: Subsetting data
-minutes: 45
 ---
 
 ```{r, include=FALSE}
 source("tools/chunk-options.R")
 # Silently load in the data so the rest of the lesson works
-#gapminder <- read.csv("data/gapminder-FiveYearData.csv", header=TRUE)
-hh <- read.table(file="data/city__table__households.csv", header=TRUE, sep=",")
-cities <- read.table(file="data/cities.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
-counties <- read.table(file="data/counties.csv", header=TRUE, sep=",", stringsAsFactors=FALSE)
+hh <- read.table(file="data/cities_households.csv", header=TRUE, sep=",")
+cities <- read.csv(file="data/cities.csv")
 hh <- merge(hh, cities, by="city_id", all=TRUE)
-hh <- merge(hh, counties, by="county_id", all=TRUE)
-colnames(hh)[3:6] <- c("hh10", "hh20", "hh30", "hh40")
+colnames(hh)[ncol(hh)] <- "county"
 ```
 
 > ## Learning Objectives {.objectives}
@@ -95,7 +91,7 @@ If we ask for the 0th element, we get an empty vector:
 x[0]
 ```
 
-> ##Vector numbering in R starts at 1 {.callout} 
+> ## Vector numbering in R starts at 1 {.callout} 
 > 
 > In many programming languages (C and python, for example), the first
 > element of a vector has an index of 0. In R, the first element is 1.
@@ -126,7 +122,7 @@ x[c(-1, -5)]  # or x[-c(1,5)]
 > x[-1:3]
 > ```
 >
-> This gives a somewhat cryptic error:
+> This gives a somewhat cryptic error.
 >
 > But remember the order of operations. `:` is really a function, so
 > what happens is it takes its first argument as -1, and second as 3,
@@ -152,7 +148,7 @@ x
 >
 > Given the following code:
 >
-> ```{.r}
+> ```{r}
 > y <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 > names(y) <- c('a', 'b', 'c', 'd', 'e')
 > print(y)
@@ -160,7 +156,7 @@ x
 >
 > Come up with at least 3 different commands that will produce the following output:
 >
-> ```{.r, echo=FALSE}
+> ```{r, echo = FALSE}
 > y[2:4]
 > ```
 >
@@ -199,18 +195,6 @@ is.na(c(x, NA))
 Similarly other functions for identifying special values, e.g.`is.nan` (`Nan` values), `is.infinite` (`Inf` values), `is.finite` (values that are not `NA`, `NaN`, `Inf`).
 
 
-> ## Challenge {.challenge}
->
-> Given the following code:
->
-> ```{r}
-> x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
-> names(x) <- c('a', 'b', 'c', 'd', 'e')
-> print(x)
-> ```
->
-> Write a subsetting command to return the values in x that are greater than 4 and less than 7.
->
 
 
 ## Subsetting by name
@@ -258,23 +242,6 @@ x[-which(names(x) %in% c("a", "c"))]
 
 The `%in%` goes through each element of its left argument, in this case the
 names of `x`, and asks, "Does this element occur in the second argument?".
-
-> ## Tip: Non-unique names {.callout}
->
-> You should be aware that it is possible for multiple elements in a
-> vector to have the same name. (For a data frame, columns can have
-> the same name --- although R tries to avoid this --- but row names
-> must be unique.) Consider these examples:
-
->```{r}
-> x <- 1:3
-> x
-> names(x) <- c('a', 'a', 'a')  
-> x
-> x['a']  # only returns first value
-> x[which(names(x) == 'a')]  # returns all three values
-> ```
-
 
 
 > ## Tip: Getting help for operators {.callout}
@@ -331,7 +298,7 @@ to its columns:
 
 ```{r}
 set.seed(1)
-m <- matrix(rnorm(6*4), ncol=4, nrow=6)
+m <- matrix(rnorm(6*4), ncol = 4, nrow = 6)
 m[3:4, c(3,1)]
 ```
 
@@ -353,7 +320,7 @@ If you want to keep the output as a matrix, you need to specify a *third* argume
 `drop = FALSE`:
 
 ```{r}
-m[3, , drop=FALSE]
+m[3, , drop = FALSE]
 ```
 
 Unlike vectors, if we try to access a row or column outside of the matrix,
@@ -368,13 +335,13 @@ are laid out in *column-major format* by default. That is the elements of the
 vector are arranged column-wise:
 
 ```{r}
-matrix(1:6, nrow=2, ncol=3)
+matrix(1:6, nrow = 2, ncol = 3)
 ```
 
-If you wish to populate the matrix by row, use `byrow=TRUE`:
+If you wish to populate the matrix by row, use `byrow = TRUE`:
 
 ```{r}
-matrix(1:6, nrow=2, ncol=3, byrow=TRUE)
+matrix(1:6, nrow = 2, ncol = 3, byrow = TRUE)
 ```
 
 Matrices can also be subsetted using their rownames and column names
@@ -387,30 +354,11 @@ instead of their row and column indices.
 > arguments correspond to the rows, columns, and depth dimension.
 >
 ```{r}
-a <- array(1:12, dim=c(2,3,2))
+a <- array(1:12, dim = c(2,3,2))
 dim(a)
 a[,,2]
 ```
 
-> ## Challenge 2 {.challenge}
->
-> Given the following code:
->
-> ```{r}
-> m <- matrix(1:18, nrow=3, ncol=6)
-> print(m)
-> ```
->
-> 1. Which of the following commands will extract the values 11 and 14?
->
-> A. `m[2,4,2,5]`
->
-> B. `m[2:5]`
->
-> C. `m[4:5,2]`
->
-> D. `m[2,c(4,5)]`
->
 
 
 ## List subsetting
@@ -472,15 +420,6 @@ The `$` function is a shorthand way for extracting elements by name:
 xlist$data
 ```
 
-> ## Challenge 3 {.challenge}
-> Given the following list:
->
-> ```{r, eval=FALSE}
-> xlist <- list(a = "PSRC", b = 1:10, data = head(hh))
-> ```
->
-> Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. 
-> Hint: the number 2 is contained within the "b" item in the list.
 
 
 ## Subsetting data frames
@@ -526,19 +465,19 @@ be changed with the third argument, `drop = FALSE`).
 Another way of subsetting data frames is using the `subset` command:
 ```{r}
 subset(hh, city_name == "Seattle")
-pierce <- subset(hh, county_name == "Pierce")
+pierce <- subset(hh, county == "Pierce")
 dim(pierce)
 head(pierce)
 ```
 
-> ## Challenge 5 {.challenge}
+> ## Challenge 2 {.challenge}
 >
 > Fix each of the following common data frame subsetting errors:
 >
-> 1. Extract observations for cities in county 1
+> 1. Extract observations for cities in county 33
 >
 > ```{r, eval=FALSE}
-> hh[hh$county_id = 1,]
+> hh[hh$county_id = 33,]
 > ```
 >
 > 2. Extract all columns except one through five
@@ -547,27 +486,27 @@ head(pierce)
 > hh[,-1:5]
 > ```
 >
-> 3. Extract the rows where the number of households in 2010 is larger than 50,000
+> 3. Extract the rows where the number of households in 2016 is larger than 50,000
 >
 > ```{r, eval=FALSE}
-> hh[hh$hh10 > 50000]
+> hh[hh$hh2016 > 50000]
 > ```
 >
-> 4. Extract the first row, and the sixth and seventh columns
+> 4. Extract the first row, and the seventh and eighth columns
 >   (`city_name` and `county_id`).
 >
 > ```{r, eval=FALSE}
-> hh[1, 6, 7]
+> hh[1, 7, 8]
 > ```
 >
-> 5. Advanced: extract rows that contain information for counties  3 and 4
+> 5. Advanced: extract rows that contain information for counties 61 and 35
 >
 > ```{r, eval=FALSE}
-> hh[hh$county_id == 3 | 4,]
+> hh[hh$county_id == 61 | 35,]
 > ```
 >
 
-> ## Challenge 6 {.challenge}
+> ## Challenge 3 {.challenge}
 >
 > 1. Why does `hh[1:20]` return an error? How does it differ from `hh[1:20, ]`?
 >
@@ -588,7 +527,7 @@ head(pierce)
 > print(y)
 > ```
 >
-> 1. Come up with at least 3 different commands that will produce the following output:
+> Come up with at least 3 different commands that will produce the following output:
 >
 > ```{r, echo=FALSE}
 > y[2:4]
@@ -603,95 +542,57 @@ head(pierce)
 >
 >
 
+
 > ## Solution to challenge 2 {.challenge}
->
-> Given the following code:
->
-> ```{r}
-> m <- matrix(1:18, nrow=3, ncol=6)
-> print(m)
-> ```
->
-> 1. Which of the following commands will extract the values 11 and 14?
->
-> A. `m[2,4,2,5]`
->
-> B. `m[2:5]`
->
-> C. `m[4:5,2]`
->
-> D. `m[2,c(4,5)]`
->
-> Answer: D
-
-> ## Solution to challenge 3 {.challenge}
-> Given the following list:
->
-> ```{r}
-> xlist <- list(a = "PSRC", b = 1:10, data = head(hh))
-> ```
->
-> Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. 
-> Hint: the number 2 is contained within the "b" item in the list.
->
-> ```{r, eval=FALSE}
-> xlist$b[2]
-> xlist[[2]][2]
-> xlist[["b"]][2]
-> ```
-
-
-> ## Solution to challenge 5 {.challenge}
 >
 > Fix each of the following common data frame subsetting errors:
 >
-> 1. Extract observations collected for the year 1957
+> 1. Extract observations for cities in county 33
 >
 > ```{r, eval=FALSE}
-> # hh[hh$county_id = 1,]
-> hh[hh$county_id == 1,]
+> # hh[hh$county_id = 33,]
+> hh[hh$county_id == 33,]
 > ```
 >
-> 2. Extract all columns except 1 through to 4
+> 2. Extract all columns except 1 through 5
 >
 > ```{r, eval=FALSE}
-> # hh[,-1:4]
+> # hh[,-1:5]
 > hh[,-(1:5)]
 > ```
 >
-> 3. Extract the rows where the number of households in 2010 is larger than 50,000
+> 3. Extract the rows where the number of households in 2016 is larger than 50,000
 >
 > ```{r, eval=FALSE}
-> # hh[hh$hh2010 > 50000]
-> hh[hh$hh10 > 50000, ]
+> # hh[hh$hh2016 > 50000]
+> hh[hh$hh2016 > 50000, ]
 > ```
 >
-> 4. Extract the first row, and the sixth and seventh columns
+> 4. Extract the first row, and the seventh and eighth columns
 >   (`city_name` and `county_id`).
 >
 > ```{r, eval=FALSE}
-> # hh[1, 6, 7]
-> hh[1, c(6, 7)]
+> # hh[1, 7, 8]
+> hh[1, c(7, 8)]
 > ```
 >
-> 5. Advanced: extract rows that contain information for counties  3 and 4
+> 5. Advanced: extract rows that contain information for counties  61 and 35
 >
 > ```{r, eval=FALSE}
-> # hh[hh$county_id == 3 | 4,]
-> hh[hh$county_id == 3 | hh$county_id == 4,]
-> hh[hh$county_id %in% c(3, 4),]
-> hh[hh$county_id %in% 3:4,]
+> # hh[hh$county_id == 61 | 35,]
+> hh[hh$county_id == 61 | hh$county_id == 35,]
+> hh[hh$county_id %in% c(61, 35),]
 > ```
 >
 
-> ## Solution to challenge 6 {.challenge}
+> ## Solution to challenge 3 {.challenge}
 >
 > 1. Why does `hh[1:20]` return an error? How does it differ from `hh[1:20, ]`?
 >
 > Answer: `hh` is a data.frame so needs to be subsetted on two dimensions. `hh[1:20, ]` subsets the data to give the first 20 rows and all columns.
 >
 > 2. Create a new `data.frame` called `hh_small` that only contains rows 1 through 9
-> and 19 through 23. You can do this in one or two steps.
+> and 19 through 23. 
 >
 > ```{r}
 > hh_small <- hh[c(1:9, 19:23),]
