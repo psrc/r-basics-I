@@ -314,6 +314,34 @@ apply(m, 2, sum) # sum across columns
 
 ~~~
 
+> ## Tip: shortcuts for sums and means in matrices {.callout}
+>
+> Another way to compute row and column sums/means for matrices is
+>
+> 
+> ~~~{.r}
+> rowSums(m)  # equivalent to apply(m, 1, sum)
+> colSums(m)  # equivalent to apply(m, 2, sum)
+> rowMeans(m) # equivalent to apply(m, 1, mean)
+> colMeans(m) # equivalent to apply(m, 2, mean)
+> ~~~
+> However, these shortcuts are not available for other functions like `median`, `min` or `max`. In such cases, the 
+> `apply` function has to be used.
+>
+> The following should hold:
+> 
+> ~~~{.r}
+> all(colSums(m) == apply(m, 2, sum) )
+> ~~~
+> 
+> 
+> 
+> ~~~{.output}
+> [1] TRUE
+> 
+> ~~~
+
+
 Similarly, with our `pierce` subset dataset created in the previous session, we can get household totals:
 
 ~~~{.r}

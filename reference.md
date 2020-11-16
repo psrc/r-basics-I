@@ -23,13 +23,13 @@ subtitle: Reference
  - Mathematical functions: `exp`, `sin`, `log`, `log10`, `log2` etc.
  - Comparison operators: `<`, `<=`, `>`, `>=`, `==`, `!=`
  - Use `all.equal` to compare numbers!
- - `<-` is the assignment operator. Anything to the right is evaluate, then
+ - `<-` is the assignment operator. Anything to the right is evaluated, then
    stored in a variable named to the left.
  - `ls` lists all variables and functions you've created
  - `rm` can be used to remove them
  - When assigning values to function arguments, you _must_ use `=`. 
 
-#### [Seeking help](01-rstudio-intro.html)
+**Seeking help:**
 
  - `?` or `help()` to seek help for a function.
  - `??` to search for a function.
@@ -43,11 +43,11 @@ subtitle: Reference
 **Basic data structures in R:**
 
  - atomic `?vector` (can only contain one type)
- - `?list` (containers for other objects)
- - `?data.frame` two dimensional objects whose columns can contain different types of data
  - `?matrix` two dimensional objects that can contain only one type of data.
  - `?factor` vectors that contain predefined categorical data.
  - `?array` multi-dimensional objects that can only contain one type of data
+ - `?list` (containers for other objects)
+ - `?data.frame` two dimensional objects whose columns can contain different types of data
 
 Remember that matrices are really atomic vectors underneath the hood, and that
 data.frames are really lists underneath the hood (this explains some of the weirder
@@ -91,14 +91,15 @@ elements).
 
 #### [Reading data](03-data-structures-part2.html)
 
- - `read.table` to read in data in a regular structure
+ - `?read.table` to read in data in a regular structure
    - `sep` argument to specify the separator
      - "," for comma separated
      - "\t" for tab separated
    - Other arguments:
      - `header=TRUE` if there is a header row
+ - `?read.csv` is a shortcut for `read.table` for comma separated files with header.
 
-#### [Data subsetting](06-data-subsetting.html)
+#### [Data subsetting](04-data-subsetting.html)
 
  - Elements can be accessed by: 
    - Index
@@ -124,5 +125,16 @@ elements).
  - `%*%` for true matrix multiplication
  - `any()` will return `TRUE` if any element of a vector is `TRUE`
  - `all()` will return `TRUE` if *all* elements of a vector are `TRUE`
+ - `sum()`, `mean()`, `median()`, `min()`, `max()` return summary statistics (one value) for all elements passed in (can be one or more vectors or matrices).
+ - `apply()` will perform given operation across matrix/array dimension(s):
+   - argument `MARGIN = 1` - across rows
+   - argument `MARGIN = 2` - across columns
+ - `rowSums(x)` (for summing rows) is the same as `apply(x, 1, sum)`
+ - `colSums(x)` (for summing columns) is the same as `apply(x, 2, sum)`
+ - `rowMeans()` and `colMeans()` is equivalent to `apply(x, 1, means)` and `apply(x, 2, means)`, respectively.
 
+#### [Simple plots](06-data-manip.html)
+ - `plot(x, y)` for scatter plots and line plots
+ - `hist(x)` for histogram
+ - `abline()` for straight lines (vertical, horizontal, diagonal)
  

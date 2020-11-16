@@ -8,6 +8,13 @@ R is one of the most widely used scripting tools for data analysis and visualiza
 
 This module covers an introduction to R, from basic data structures to simple graphs. You will learn how to load external datasets, extract, transform and summarize data, as well as how to quickly visualize simple relations in the data. This module is for beginners or for those who want to refresh their knowledge in R basics.
 
+Date: 11-17-2020
+
+Instructor: Hana Ševčíková
+
+Assistents: Christy Lam, Suzanne Childress, Polina Butina
+
+
 ## Prerequisites
 
 Please have R and RStudio installed before the course:
@@ -17,6 +24,8 @@ Please have R and RStudio installed before the course:
     * If you clicked on "Download R for Windows", now click the "base" link.  Next, click "Download R 4.0.3 for Windows" which downloads the installer. Run the installer. 
     * If you chose "Download R for (Mac) OS X", click the "R-4.0.3.pkg" link. An installer will download to guide you through the installation process.
 2. Install [RStudio Desktop](https://rstudio.com/products/rstudio/download).
+
+
 
 ## Topics
 
