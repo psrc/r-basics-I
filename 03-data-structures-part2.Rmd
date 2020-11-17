@@ -117,6 +117,16 @@ cd data/ # navigate to the data directory of the project folder
 head cities_households.csv
 ```
 
+First navigate into your workshop directory. Check what directory you are in by
+```{r, eval = FALSE}
+getwd()
+```
+and then set the working directory via `setwd()`, e.g.
+
+```{r, eval = FALSE}
+setwd("C:/Users/Hana/R-basics-I")
+```
+
 The file contains comma-separated values and a header row. We can use `read.table` to read this into R:
 
 ```{r}

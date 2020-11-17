@@ -324,6 +324,18 @@ city_id,hh2016,hh2020,hh2030,hh2040,hh2050
 
 ~~~
 
+First navigate into your workshop directory. Check what directory you are in by
+
+~~~{.r}
+getwd()
+~~~
+and then set the working directory via `setwd()`, e.g.
+
+
+~~~{.r}
+setwd("C:/Users/Hana/R-basics-I")
+~~~
+
 The file contains comma-separated values and a header row. We can use `read.table` to read this into R:
 
 

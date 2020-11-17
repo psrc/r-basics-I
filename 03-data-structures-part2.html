@@ -185,9 +185,13 @@
 8,7300,8075,10690,13359,15894
 9,329066,344980,398615,453388,505387
 </code></pre>
+<p>First navigate into your workshop directory. Check what directory you are in by</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<p>and then set the working directory via <code>setwd()</code>, e.g.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/Hana/R-basics-I&quot;</span>)</a></code></pre></div>
 <p>The file contains comma-separated values and a header row. We can use <code>read.table</code> to read this into R:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">hh &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/cities_households.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">head</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">hh &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&quot;data/cities_households.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">head</span>(hh)</a></code></pre></div>
 <pre class="output"><code>  city_id hh2016 hh2020 hh2030 hh2040 hh2050
 1       1   2705   2735   2836   2939   3037
 2       2  24886  26527  32059  37708  43071
@@ -197,9 +201,9 @@
 6       6  16769  17481  19881  22332  24658
 </code></pre>
 <p>Because we know the structure of the data, we’re able to specify the appropriate arguments to <code>read.table</code>. Without these arguments, <code>read.table</code> will do its best to do something sensible, but it is always more reliable to explicitly tell <code>read.table</code> the structure of the data. <code>read.csv</code> function provides a convenient shortcut for loading in CSV files.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="co"># Here is the read.csv version of the above command</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">hh &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/cities_households.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">head</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="co"># Here is the read.csv version of the above command</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">hh &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file =</span> <span class="st">&quot;data/cities_households.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">head</span>(hh)</a></code></pre></div>
 <pre class="output"><code>  city_id hh2016 hh2020 hh2030 hh2040 hh2050
 1       1   2705   2735   2836   2939   3037
 2       2  24886  26527  32059  37708  43071
@@ -224,20 +228,20 @@
 <h2 id="using-data-frames">Using data frames</h2>
 <p>To recap what we’ve just learned, let’s have a look at our example data (number of households in various cities for various years).</p>
 <p>Remember, there are a few functions we can use to interrogate data structures in R:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">class</span>() <span class="co"># what is the data structure?</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="kw">typeof</span>() <span class="co"># what is its atomic type?</span></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="kw">length</span>() <span class="co"># how long is it? What about two dimensional objects?</span></a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="kw">attributes</span>() <span class="co"># does it have any metadata?</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="kw">str</span>() <span class="co"># A full summary of the entire object</span></a>
-<a class="sourceLine" id="cb33-6" data-line-number="6"><span class="kw">dim</span>() <span class="co"># Dimensions of the object - also try nrow(), ncol()</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">class</span>() <span class="co"># what is the data structure?</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="kw">typeof</span>() <span class="co"># what is its atomic type?</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="kw">length</span>() <span class="co"># how long is it? What about two dimensional objects?</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="kw">attributes</span>() <span class="co"># does it have any metadata?</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="kw">str</span>() <span class="co"># A full summary of the entire object</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="kw">dim</span>() <span class="co"># Dimensions of the object - also try nrow(), ncol()</span></a></code></pre></div>
 <p>Let’s use them to explore the household dataset.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">class</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw">class</span>(hh)</a></code></pre></div>
 <pre class="output"><code>[1] &quot;data.frame&quot;
 </code></pre>
 <p>The household data is stored in a “data.frame”. This is the default data structure when you read in data, and (as we’ve heard) is useful for storing data with mixed types of columns.</p>
 <p>Let’s add a column with the name of each city and county and merge the two datasets:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">cities &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;data/cities.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">head</span>(cities)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">cities &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;data/cities.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">head</span>(cities)</a></code></pre></div>
 <pre class="output"><code>  city_id     city_name county_id county_name
 1       1 Normandy Park        33        King
 2       2        Auburn        33        King
@@ -247,8 +251,8 @@
 6       6    Renton PAA        33        King
 </code></pre>
 <p>Let’s merge the cities dataset with our households dataset.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">hh &lt;-<span class="st"> </span><span class="kw">merge</span>(hh, cities, <span class="dt">by=</span><span class="st">&quot;city_id&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="kw">head</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">hh &lt;-<span class="st"> </span><span class="kw">merge</span>(hh, cities, <span class="dt">by=</span><span class="st">&quot;city_id&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="kw">head</span>(hh)</a></code></pre></div>
 <pre class="output"><code>  city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id
 1       1   2705   2735   2836   2939   3037 Normandy Park        33
 2       2  24886  26527  32059  37708  43071        Auburn        33
@@ -265,7 +269,7 @@
 6        King
 </code></pre>
 <p>The first thing you should do when reading data in, is check that it matches what you expect, even if the command ran without warnings or errors. The <code>str</code> function, short for “structure”, is really useful for this:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">str</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">str</span>(hh)</a></code></pre></div>
 <pre class="output"><code>&#39;data.frame&#39;:   161 obs. of  9 variables:
  $ city_id    : int  1 2 3 4 5 6 7 8 9 10 ...
  $ hh2016     : int  2705 24886 45021 10135 22527 16769 45076 7300 329066 171 ...
@@ -279,12 +283,12 @@
 </code></pre>
 <p>We can see that the object is a <code>data.frame</code> with 161 observations (rows), and 9 variables (columns). Below that, we see the name of each column, followed by a “:”, followed by the type of variable in that column, along with the first few entries.</p>
 <p>We can retrieve or modify the column or row names of the data.frame:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">colnames</span>(hh) </a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">colnames</span>(hh) </a></code></pre></div>
 <pre class="output"><code>[1] &quot;city_id&quot;     &quot;hh2016&quot;      &quot;hh2020&quot;      &quot;hh2030&quot;      &quot;hh2040&quot;     
 [6] &quot;hh2050&quot;      &quot;city_name&quot;   &quot;county_id&quot;   &quot;county_name&quot;
 </code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">colnames</span>(hh)[<span class="kw">ncol</span>(hh)] &lt;-<span class="st"> &quot;county&quot;</span> <span class="co"># rename the last column</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="kw">head</span>(hh, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">colnames</span>(hh)[<span class="kw">ncol</span>(hh)] &lt;-<span class="st"> &quot;county&quot;</span> <span class="co"># rename the last column</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="kw">head</span>(hh, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre class="output"><code>   city_id hh2016 hh2020 hh2030 hh2040 hh2050     city_name county_id county
 1        1   2705   2735   2836   2939   3037 Normandy Park        33   King
 2        2  24886  26527  32059  37708  43071        Auburn        33   King
@@ -297,20 +301,20 @@
 9        9 329066 344980 398615 453388 505387       Seattle        33   King
 10      10    171    176    195    213    230      Kent PAA        33   King
 </code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">rownames</span>(hh)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">rownames</span>(hh)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a></code></pre></div>
 <pre class="output"><code> [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;5&quot;  &quot;6&quot;  &quot;7&quot;  &quot;8&quot;  &quot;9&quot;  &quot;10&quot; &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;14&quot; &quot;15&quot;
 [16] &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot;
 </code></pre>
 <p>See those numbers in the square brackets on the left? That tells you the number of the first entry in that row of output.</p>
 <p>There are a few related ways of retrieving and modifying this information. <code>attributes</code> will give you both the row and column names, along with the class information, while <code>dimnames</code> will give you just the rownames and column names.</p>
 <p>In both cases, the output object is stored in a <code>list</code>:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">str</span>(<span class="kw">dimnames</span>(hh))</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">str</span>(<span class="kw">dimnames</span>(hh))</a></code></pre></div>
 <pre class="output"><code>List of 2
  $ : chr [1:161] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
  $ : chr [1:9] &quot;city_id&quot; &quot;hh2016&quot; &quot;hh2020&quot; &quot;hh2030&quot; ...
 </code></pre>
 <p>We can look at some summary statistics:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">summary</span>(hh)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">summary</span>(hh)</a></code></pre></div>
 <pre class="output"><code>    city_id           hh2016           hh2020           hh2030      
  Min.   :  1.00   Min.   :     0   Min.   :     0   Min.   :     0  
  1st Qu.: 41.00   1st Qu.:   310   1st Qu.:   327   1st Qu.:   382  

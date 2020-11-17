@@ -98,6 +98,8 @@ elements).
    - Other arguments:
      - `header=TRUE` if there is a header row
  - `?read.csv` is a shortcut for `read.table` for comma separated files with header.
+ - `getwd()` gives the current working directory.
+ - `setwd(dir)` sets the working directory to `dir`. 
 
 #### [Data subsetting](04-data-subsetting.html)
 
