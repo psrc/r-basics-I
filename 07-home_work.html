@@ -42,8 +42,9 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">5.4</span>, <span class="fl">6.2</span>, <span class="fl">7.1</span>, <span class="fl">4.8</span>, <span class="fl">7.5</span>)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">names</span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;e&#39;</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>##   a   b   c   d   e 
-## 5.4 6.2 7.1 4.8 7.5</code></pre>
+<pre class="output"><code>  a   b   c   d   e 
+5.4 6.2 7.1 4.8 7.5 
+</code></pre>
 <p>Write a subsetting command to return the values in x that are greater than 4 and less than 7.</p>
 </div>
 </section>
@@ -56,10 +57,11 @@
 <p>Given the following code:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dt">nrow =</span> <span class="dv">3</span>, <span class="dt">ncol =</span> <span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">print</span>(m)</a></code></pre></div>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6]
-## [1,]    1    4    7   10   13   16
-## [2,]    2    5    8   11   14   17
-## [3,]    3    6    9   12   15   18</code></pre>
+<pre class="output"><code>     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    4    7   10   13   16
+[2,]    2    5    8   11   14   17
+[3,]    3    6    9   12   15   18
+</code></pre>
 <ol type="1">
 <li>Which of the following commands will extract the values 11 and 14?</li>
 </ol>
@@ -122,6 +124,7 @@
 <li>Use the <code>subset</code> function to answer question 5.</li>
 <li>For question 6, create a subset of the dataset corresponding to the given population (should have 92 records). Create a scatter plot of households and employment for this subsets, as well as a <code>x=y</code> line. To what city does the biggest outlier belong to? Answer the last question by a visual assessment of the scatter plot.</li>
 </ol>
+<p><img src="img/4mnlal.jpg" /></p>
         </div>
       </div>
       </article>

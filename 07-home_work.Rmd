@@ -4,6 +4,9 @@ title: R Fundamentals I
 subtitle: Homework
 ---
 
+```{r, include=FALSE}
+source("tools/chunk-options.R")
+```
 
 Let's practice what you learned in this class. You will subset vectors and matrices, read data, transform columns, subset dataset, plot and extract information. Be ready to self-study material that we did not get to cover in the class.
 
@@ -117,4 +120,5 @@ Write a script that reads the datasets "indicators2050.csv" and "cities.csv", an
 7. Use the `subset` function to answer question 5.
 8. For question 6, create a subset of the dataset corresponding to the given population (should have 92 records). Create a scatter plot of households and employment for this subsets, as well as a `x=y` line. To what city does the biggest outlier belong to? Answer the last question by a visual assessment of the scatter plot.
 
+![](img/4mnlal.jpg)
 

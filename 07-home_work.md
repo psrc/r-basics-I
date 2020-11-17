@@ -5,6 +5,7 @@ subtitle: Homework
 ---
 
 
+
 Let's practice what you learned in this class. You will subset vectors and matrices, read data, transform columns, subset dataset, plot and extract information. Be ready to self-study material that we did not get to cover in the class.
 
 ## Part I
@@ -27,16 +28,19 @@ Let's practice what you learned in this class. You will subset vectors and matri
 > given the following code:
 >
 > 
-> ```r
+> ~~~{.r}
 > x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
 > names(x) <- c('a', 'b', 'c', 'd', 'e')
 > print(x)
-> ```
+> ~~~
 > 
-> ```
-> ##   a   b   c   d   e 
-> ## 5.4 6.2 7.1 4.8 7.5
-> ```
+> 
+> 
+> ~~~{.output}
+>   a   b   c   d   e 
+> 5.4 6.2 7.1 4.8 7.5 
+> 
+> ~~~
 >
 > Write a subsetting command to return the values in x that are greater than 4 and less than 7.
 >
@@ -48,17 +52,20 @@ Let's practice what you learned in this class. You will subset vectors and matri
 > Given the following code:
 >
 > 
-> ```r
+> ~~~{.r}
 > m <- matrix(1:18, nrow = 3, ncol = 6)
 > print(m)
-> ```
+> ~~~
 > 
-> ```
-> ##      [,1] [,2] [,3] [,4] [,5] [,6]
-> ## [1,]    1    4    7   10   13   16
-> ## [2,]    2    5    8   11   14   17
-> ## [3,]    3    6    9   12   15   18
-> ```
+> 
+> 
+> ~~~{.output}
+>      [,1] [,2] [,3] [,4] [,5] [,6]
+> [1,]    1    4    7   10   13   16
+> [2,]    2    5    8   11   14   17
+> [3,]    3    6    9   12   15   18
+> 
+> ~~~
 >
 > 1. Which of the following commands will extract the values 11 and 14?
 >
@@ -75,9 +82,9 @@ Let's practice what you learned in this class. You will subset vectors and matri
 > Given the following list (where `hh` is the households data frame created in the class): 
 >
 > 
-> ```r
+> ~~~{.r}
 > xlist <- list(a = "PSRC", b = 1:10, data = head(hh))
-> ```
+> ~~~
 >
 > Using your knowledge of both list and vector subsetting, extract the number 2 from xlist. 
 > Hint: the number 2 is contained within the "b" item in the list.
@@ -89,9 +96,9 @@ Let's practice what you learned in this class. You will subset vectors and matri
 > following sequence of fractions:
 >
 > 
-> ```r
+> ~~~{.r}
 >  x = 1/(1^2) + 1/(2^2) + 1/(3^2) + ... + 1/(n^2)
-> ```
+> ~~~
 >
 > This would be tedious to type out, and impossible for high values of
 > n.  Use vectorisation to compute x when n=100. What is the sum when
@@ -101,10 +108,10 @@ Let's practice what you learned in this class. You will subset vectors and matri
 >
 > Given a random matrix 
 > 
-> ```r
+> ~~~{.r}
 > set.seed(123)
 > rmat <- matrix(rnorm(30), nrow = 3, ncol = 10)
-> ```
+> ~~~
 > find two ways to compute averages across the three rows in one line of code. 
 >
 > Now, instead of averages, compute the medians.  
@@ -134,4 +141,5 @@ Write a script that reads the datasets "indicators2050.csv" and "cities.csv", an
 7. Use the `subset` function to answer question 5.
 8. For question 6, create a subset of the dataset corresponding to the given population (should have 92 records). Create a scatter plot of households and employment for this subsets, as well as a `x=y` line. To what city does the biggest outlier belong to? Answer the last question by a visual assessment of the scatter plot.
 
+![](img/4mnlal.jpg)
 
