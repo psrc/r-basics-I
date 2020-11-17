@@ -117,6 +117,11 @@ elements).
  - `[[` double square brackets to subset lists
  - `$` to access columns or list elements by name
  - negative indices skip elements
+ - `subset` to extract a subset of a dataset or vector which meet a logical condition.
+ - Chaining logical operations:
+   - `&`, `|` logical AND, OR (elementwise comparison)
+   - `!` logical NOT (elementwise comparison)
+   - `&&`, `||` logical AND, OR (compares one element only)
 
 #### [Vectorisation](05-vectorisation.html)
 

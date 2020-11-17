@@ -191,6 +191,25 @@ df[!is.na(df$zero), ]  # is.na() returns TRUE where its argument is NA
 
 
 ~~~{.r}
+subset(df, !is.na(zero)) # keep records where the expression is TRUE
+~~~
+
+
+
+~~~{.output}
+  id x   y z caps zero
+1  a 1 100 6    A    0
+2  b 2  99 5    B    0
+3  c 3  98 4    C    0
+4  d 4  97 3    D    0
+5  e 5  96 2    E    0
+6  f 6  95 1    F    0
+
+~~~
+
+
+
+~~~{.r}
 df <- na.omit(df)  # Another function for the same purpose; checks all variables
 df
 ~~~
