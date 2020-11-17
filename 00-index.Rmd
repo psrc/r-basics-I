@@ -25,7 +25,7 @@ Please have R and RStudio installed before the course:
     * If you chose "Download R for (Mac) OS X", click the "R-4.0.3.pkg" link. An installer will download to guide you through the installation process.
 2. Install [RStudio Desktop](https://rstudio.com/products/rstudio/download).
 
-
+Create a directory for this class, say "R-basics-I". [Download data](http://aws-linux/rworkshop2020/r-basicsI-data.zip) and unzip it into the newly created directory.
 
 ## Topics
 
