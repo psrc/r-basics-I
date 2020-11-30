@@ -72,20 +72,20 @@ head(hhlog)
 Create a dataset of differences:
 
 ~~~{.r}
-hhdif <- cbind(hh[, c(1,7:9)], hh[,3:5] - hh[,2:4])
+hhdif <- cbind(hh[, c(1,7:9)], hh[,3:6] - hh[,2:5])
 head(hhdif)
 ~~~
 
 
 
 ~~~{.output}
-  city_id     city_name county_id county hh2020 hh2030 hh2040
-1       1 Normandy Park        33   King     30    101    103
-2       2        Auburn        33   King   1641   5532   5649
-3       3    King-Rural        33   King    703   2370   2421
-4       4        SeaTac        33   King    987   3327   3397
-5       5     Shoreline        33   King    713   2403   2454
-6       6    Renton PAA        33   King    712   2400   2451
+  city_id     city_name county_id county hh2020 hh2030 hh2040 hh2050
+1       1 Normandy Park        33   King     30    101    103     98
+2       2        Auburn        33   King   1641   5532   5649   5363
+3       3    King-Rural        33   King    703   2370   2421   2298
+4       4        SeaTac        33   King    987   3327   3397   3226
+5       5     Shoreline        33   King    713   2403   2454   2330
+6       6    Renton PAA        33   King    712   2400   2451   2326
 
 ~~~
 
@@ -105,13 +105,13 @@ summary(hhdif)
  Mean   : 82.79                      Mean   :46.98                     
  3rd Qu.:122.00                      3rd Qu.:61.00                     
  Max.   :173.00                      Max.   :61.00                     
-     hh2020            hh2030          hh2040     
- Min.   :   -2.0   Min.   :   -6   Min.   :   -5  
- 1st Qu.:   13.0   1st Qu.:   46   1st Qu.:   46  
- Median :  116.0   Median :  393   Median :  400  
- Mean   :  469.8   Mean   : 1583   Mean   : 1617  
- 3rd Qu.:  488.0   3rd Qu.: 1643   3rd Qu.: 1678  
- Max.   :15914.0   Max.   :53635   Max.   :54773  
+     hh2020            hh2030          hh2040          hh2050     
+ Min.   :   -2.0   Min.   :   -6   Min.   :   -5   Min.   :   -6  
+ 1st Qu.:   13.0   1st Qu.:   46   1st Qu.:   46   1st Qu.:   45  
+ Median :  116.0   Median :  393   Median :  400   Median :  380  
+ Mean   :  469.8   Mean   : 1583   Mean   : 1617   Mean   : 1535  
+ 3rd Qu.:  488.0   3rd Qu.: 1643   3rd Qu.: 1678   3rd Qu.: 1593  
+ Max.   :15914.0   Max.   :53635   Max.   :54773   Max.   :51999  
 
 ~~~
 

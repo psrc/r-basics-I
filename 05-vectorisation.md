@@ -9,6 +9,7 @@ subtitle: Vectorisation
 > ## Learning Objectives {.objectives}
 >
 > * To understand vectorised operations in R.
+> * To understand the `apply` function.
 >
 
 Most of R's functions are vectorised, meaning that the function will

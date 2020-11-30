@@ -72,15 +72,15 @@
 6        33   King  24.658
 </code></pre>
 <p>Create a dataset of differences:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">hhdif &lt;-<span class="st"> </span><span class="kw">cbind</span>(hh[, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)], hh[,<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>] <span class="op">-</span><span class="st"> </span>hh[,<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>])</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">hhdif &lt;-<span class="st"> </span><span class="kw">cbind</span>(hh[, <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>)], hh[,<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>] <span class="op">-</span><span class="st"> </span>hh[,<span class="dv">2</span><span class="op">:</span><span class="dv">5</span>])</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">head</span>(hhdif)</a></code></pre></div>
-<pre class="output"><code>  city_id     city_name county_id county hh2020 hh2030 hh2040
-1       1 Normandy Park        33   King     30    101    103
-2       2        Auburn        33   King   1641   5532   5649
-3       3    King-Rural        33   King    703   2370   2421
-4       4        SeaTac        33   King    987   3327   3397
-5       5     Shoreline        33   King    713   2403   2454
-6       6    Renton PAA        33   King    712   2400   2451
+<pre class="output"><code>  city_id     city_name county_id county hh2020 hh2030 hh2040 hh2050
+1       1 Normandy Park        33   King     30    101    103     98
+2       2        Auburn        33   King   1641   5532   5649   5363
+3       3    King-Rural        33   King    703   2370   2421   2298
+4       4        SeaTac        33   King    987   3327   3397   3226
+5       5     Shoreline        33   King    713   2403   2454   2330
+6       6    Renton PAA        33   King    712   2400   2451   2326
 </code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">summary</span>(hhdif)</a></code></pre></div>
 <pre class="output"><code>    city_id        city_name           county_id        county         
@@ -90,13 +90,13 @@
  Mean   : 82.79                      Mean   :46.98                     
  3rd Qu.:122.00                      3rd Qu.:61.00                     
  Max.   :173.00                      Max.   :61.00                     
-     hh2020            hh2030          hh2040     
- Min.   :   -2.0   Min.   :   -6   Min.   :   -5  
- 1st Qu.:   13.0   1st Qu.:   46   1st Qu.:   46  
- Median :  116.0   Median :  393   Median :  400  
- Mean   :  469.8   Mean   : 1583   Mean   : 1617  
- 3rd Qu.:  488.0   3rd Qu.: 1643   3rd Qu.: 1678  
- Max.   :15914.0   Max.   :53635   Max.   :54773  
+     hh2020            hh2030          hh2040          hh2050     
+ Min.   :   -2.0   Min.   :   -6   Min.   :   -5   Min.   :   -6  
+ 1st Qu.:   13.0   1st Qu.:   46   1st Qu.:   46   1st Qu.:   45  
+ Median :  116.0   Median :  393   Median :  400   Median :  380  
+ Mean   :  469.8   Mean   : 1583   Mean   : 1617   Mean   : 1535  
+ 3rd Qu.:  488.0   3rd Qu.: 1643   3rd Qu.: 1678   3rd Qu.: 1593  
+ Max.   :15914.0   Max.   :53635   Max.   :54773   Max.   :51999  
 </code></pre>
 <h2 id="scatter-plot-and-histogram">Scatter plot and histogram</h2>
 <p>Plot results:</p>

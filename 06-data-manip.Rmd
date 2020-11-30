@@ -37,7 +37,7 @@ head(hhlog)
 
 Create a dataset of differences:
 ```{r}
-hhdif <- cbind(hh[, c(1,7:9)], hh[,3:5] - hh[,2:4])
+hhdif <- cbind(hh[, c(1,7:9)], hh[,3:6] - hh[,2:5])
 head(hhdif)
 summary(hhdif)
 ```
