@@ -43,3 +43,9 @@ Create a directory for this class, say "R-basics-I". [Download data](http://aws-
 *   [Reference](reference.html)
 *   [R Users Group Teams channel](https://teams.microsoft.com/l/team/19%3acc0d301f0686423f88a595c8ebd899b2%40thread.tacv2/conversations?groupId=8074c01e-f54d-4ac9-83c3-2151fe9ff857&tenantId=592e9ca1-4644-417e-b22f-1cb35d574dad)
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
