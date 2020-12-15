@@ -45,6 +45,10 @@ Create a directory for this class, say "R-basics-I". [Download data](http://aws-
 
 <br>
 <br>
+[Back to all modules](index.html)
+
+<br>
+<br>
 <br>
 <br>
 <br>
